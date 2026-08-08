@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cwu38xvgbsox6"]
+
+[ext_resource type="Texture2D" uid="uid://7t3nku70kf87" path="res://assets/upgrades/tooltip_frame_230x120.png" id="1_rfpdj"]
+[ext_resource type="Script" uid="uid://bftxyqn1buijy" path="res://nodes/upgrades/upgrade_tooltip.gd" id="2_4uag6"]
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="2_5in2n"]
+
+[node name="UpgradeToolTip" type="Control" unique_id=1603382948]
+texture_filter = 1
+custom_minimum_size = Vector2(230, 120)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -730.0
+offset_bottom = -420.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme = ExtResource("2_5in2n")
+script = ExtResource("2_4uag6")
+
+[node name="base" type="TextureRect" parent="." unique_id=213276473]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 120.0
+mouse_behavior_recursive = 1
+texture = ExtResource("1_rfpdj")
+
+[node name="upgradeInfos" type="VBoxContainer" parent="." unique_id=1807983766]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 226.0
+offset_bottom = 120.0
+mouse_behavior_recursive = 1
+theme = ExtResource("2_5in2n")
+
+[node name="upgradeName" type="Label" parent="upgradeInfos" unique_id=1157277300]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 14
+text = "Upgrade Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgradeDescription" type="Label" parent="upgradeInfos" unique_id=1843864815]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 8
+text = "Description test, this should be pretty long so its important to test."
+autowrap_mode = 3
+
+[node name="upgradeCost" type="Label" parent="upgradeInfos" unique_id=1629733563]
+layout_mode = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 10
+text = "            $ 500 Tri"
+vertical_alignment = 1
+
+[node name="upgradeAmount" type="Label" parent="upgradeInfos" unique_id=709554471]
+layout_mode = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+theme_override_colors/font_color = Color(0.6875, 0.6123047, 0.10205078, 1)
+theme_override_font_sizes/font_size = 10
+text = "            # 500"
+vertical_alignment = 1

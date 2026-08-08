@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bd0c0tcrirdra"]
+
+[ext_resource type="Script" uid="uid://ceueu4xr704ns" path="res://nodes/events/event_warning_new.gd" id="1_e1bdw"]
+[ext_resource type="Texture2D" uid="uid://jm0ul6hvx7fw" path="res://assets/warning_new_16x16.png" id="1_s8hkw"]
+
+[node name="EventWarningNew" type="Control" unique_id=1250520229]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_e1bdw")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2011065309]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("1_s8hkw")
+
+[node name="Timer" type="Timer" parent="." unique_id=795070030]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

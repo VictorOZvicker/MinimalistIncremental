@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bbdy4y4ppdiid"]
+
+[ext_resource type="Script" uid="uid://dmo03c021rwmw" path="res://scenes/generator/generators_scene.gd" id="1_cj4ya"]
+
+[node name="Generators" type="Control" unique_id=1879962665]
+custom_minimum_size = Vector2(768, 460)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+offset_right = -192.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cj4ya")
+
+[node name="Base" type="ColorRect" parent="." unique_id=1288316743]
+custom_minimum_size = Vector2(768, 460)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.008844296, 0.10129777, 0.18392846, 1)
+
+[node name="PrestigeButton" type="ColorRect" parent="." unique_id=907016566]
+layout_mode = 0
+offset_left = 559.0
+offset_right = 767.0
+offset_bottom = 120.0
+color = Color(0.01864705, 0.121012785, 0.0912736, 1)
+
+[node name="GeneratorsScroll" type="ScrollContainer" parent="." unique_id=1919441930]
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 460.0
+horizontal_scroll_mode = 0
+
+[node name="GeneratorsGrid" type="VBoxContainer" parent="GeneratorsScroll" unique_id=1919441931]
+layout_mode = 2
+size_flags_horizontal = 3

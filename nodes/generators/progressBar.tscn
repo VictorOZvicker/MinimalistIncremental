@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c138bwkgahih1"]
+
+[ext_resource type="Script" uid="uid://bu5wta716hpp4" path="res://nodes/generators/progress_bar.gd" id="1_0brme"]
+[ext_resource type="Texture2D" uid="uid://cbq61wlh7p5qw" path="res://assets/progress_bar.png" id="2_0brme"]
+
+[node name="ProgressBar" type="Control" unique_id=2041368337]
+custom_minimum_size = Vector2(304, 48)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -656.0
+offset_bottom = -492.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0brme")
+
+[node name="generatorColor" type="ColorRect" parent="." unique_id=96638267]
+custom_minimum_size = Vector2(304, 48)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 48.0
+color = Color(1, 0, 0.053325653, 1)
+
+[node name="progressBar" type="TextureProgressBar" parent="." unique_id=1709761967]
+custom_minimum_size = Vector2(304, 48)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 48.0
+value = 100.0
+fill_mode = 1
+texture_progress = ExtResource("2_0brme")
+
+[node name="progressLabel" type="Label" parent="." unique_id=1379915891]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 13.5
+offset_right = 172.0
+offset_bottom = 30.5
+theme_override_font_sizes/font_size = 12
+text = "1.0/5.0"
+
+[node name="productionTimer" type="Timer" parent="." unique_id=768381018]
+
+[connection signal="timeout" from="productionTimer" to="." method="on_production_timer_timeout"]

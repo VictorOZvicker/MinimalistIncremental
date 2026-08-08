@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bir0sk4nyrc2n"]
+
+[ext_resource type="Script" uid="uid://ctbhwvopf0obk" path="res://nodes/upgrades/upgrade_node.gd" id="1_fseri"]
+[ext_resource type="Texture2D" uid="uid://bp65tysmov7lx" path="res://assets/upgrades/primary_discount.png" id="2_n62v3"]
+
+[sub_resource type="Theme" id="Theme_3s6vf"]
+
+[node name="UpgradeNode" type="Control" unique_id=109426515]
+custom_minimum_size = Vector2(256, 360)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -704.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fseri")
+
+[node name="base" type="ColorRect" parent="." unique_id=1749961308]
+custom_minimum_size = Vector2(256, 360)
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 360.0
+color = Color(0.2159017, 0.21590173, 0.21590167, 1)
+
+[node name="iconArt" type="TextureRect" parent="." unique_id=31011491]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 128.0
+texture = ExtResource("2_n62v3")
+
+[node name="upgradeLabels" type="VBoxContainer" parent="." unique_id=1842410227]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 360.0
+
+[node name="upgradeName" type="Label" parent="upgradeLabels" unique_id=1053225913]
+layout_mode = 2
+theme = SubResource("Theme_3s6vf")
+theme_override_font_sizes/font_size = 18
+text = "Teste de nome"
+horizontal_alignment = 1
+
+[node name="upgradeCost" type="Label" parent="upgradeLabels" unique_id=1780171256]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Cost: 1 Billion"
+horizontal_alignment = 1
+
+[node name="upgradeDescription" type="Label" parent="upgradeLabels" unique_id=997632583]
+custom_minimum_size = Vector2(256, 151)
+layout_mode = 2
+text = "Teste de descrição de upgrade. Normalmente ele não precisa ser muito longo, apenas ter o essencial."
+autowrap_mode = 2
+
+[node name="upgradeAmount" type="Label" parent="upgradeLabels" unique_id=138085452]
+layout_mode = 2
+text = "# 1/10"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="buyButton" type="TextureButton" parent="." unique_id=1588182725]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 360.0
+
+[connection signal="pressed" from="buyButton" to="." method="_on_buy_button_pressed"]

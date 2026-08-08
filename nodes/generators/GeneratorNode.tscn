@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://coty1nf00k3go"]
+
+[ext_resource type="Script" uid="uid://b6myqcjlrwsbl" path="res://nodes/generators/generator_node.gd" id="1_okw1s"]
+[ext_resource type="Texture2D" uid="uid://6ciekh15g3pj" path="res://assets/button_frame_128x128.png" id="3_eghbe"]
+[ext_resource type="PackedScene" uid="uid://c138bwkgahih1" path="res://nodes/generators/progressBar.tscn" id="3_pegst"]
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://c1nuvkkgcag3m" path="res://assets/base_32x32.png" id="4_utlpr"]
+[ext_resource type="FontFile" uid="uid://bi2hafc1eqx48" path="res://assets/fonts/PixelCode.ttf" id="6_2uex6"]
+[ext_resource type="PackedScene" uid="uid://bd0c0tcrirdra" path="res://nodes/events/eventWarningNew.tscn" id="8_cd438"]
+
+[sub_resource type="Theme" id="Theme_2uex6"]
+
+[node name="BaseGenerator" type="Control" unique_id=521849254]
+clip_contents = true
+custom_minimum_size = Vector2(432, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -528.0
+offset_bottom = -412.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_theme")
+script = ExtResource("1_okw1s")
+
+[node name="buyButton" type="TextureButton" parent="." unique_id=816929357]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme = ExtResource("3_theme")
+texture_normal = ExtResource("3_eghbe")
+
+[node name="buyIndicator" type="ReferenceRect" parent="buyButton" unique_id=1055320585]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 127.0
+offset_bottom = 127.0
+border_width = 2.0
+editor_only = false
+
+[node name="buttonsLabels" type="VBoxContainer" parent="buyButton" unique_id=107451401]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 120.0
+theme_override_constants/separation = 1
+
+[node name="buyLabel" type="Label" parent="buyButton/buttonsLabels" unique_id=636091549]
+layout_mode = 2
+theme = SubResource("Theme_2uex6")
+text = "Buy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="moneyLabel" type="Label" parent="buyButton/buttonsLabels" unique_id=943851943]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_2uex6")
+theme_override_font_sizes/font_size = 24
+text = "$$$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="generatorCost" type="Label" parent="buyButton/buttonsLabels" unique_id=258241174]
+layout_mode = 2
+theme = ExtResource("3_theme")
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+
+[node name="amountBought" type="Label" parent="buyButton/buttonsLabels" unique_id=1281303102]
+layout_mode = 2
+theme = ExtResource("3_theme")
+theme_override_font_sizes/font_size = 12
+text = "(1)"
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1872279410]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 432.0
+offset_bottom = 128.0
+theme_override_constants/separation = 0
+
+[node name="infos" type="ColorRect" parent="VBoxContainer" unique_id=1661532149]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+color = Color(0.11764706, 0.11764706, 0.14117648, 1)
+
+[node name="ProgressBar" parent="VBoxContainer" unique_id=2041368337 instance=ExtResource("3_pegst")]
+layout_mode = 2
+
+[node name="levelLabel" type="Label" parent="." unique_id=951742485]
+custom_minimum_size = Vector2(150, 24)
+layout_mode = 0
+offset_left = 282.0
+offset_right = 432.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.6862745, 0.6117647, 0.101960786, 1)
+text = "# 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Labels" type="VBoxContainer" parent="." unique_id=636499460]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 432.0
+offset_bottom = 80.0
+theme_override_constants/separation = -2
+
+[node name="generatorName" type="Label" parent="Labels" unique_id=1091749003]
+layout_mode = 2
+theme = ExtResource("3_theme")
+theme_override_colors/font_color = Color(0.93, 0.95, 0.97, 1)
+theme_override_font_sizes/font_size = 26
+text = "Gerador 1"
+
+[node name="generatorProduction" type="Label" parent="Labels" unique_id=471920859]
+layout_mode = 2
+theme = ExtResource("3_theme")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "Generating: 1/s"
+
+[node name="openInvetoryButton" type="TextureButton" parent="." unique_id=1068109223]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 48.0
+offset_right = 432.0
+offset_bottom = 80.0
+texture_normal = ExtResource("4_utlpr")
+
+[node name="unlockBg" type="ColorRect" parent="." unique_id=900773388]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 433.0
+offset_bottom = 128.0
+color = Color(0.11764706, 0.11764706, 0.14117648, 1)
+
+[node name="unlockLabel" type="Label" parent="unlockBg" unique_id=1540771617]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 304.0
+offset_bottom = 35.0
+theme = ExtResource("3_theme")
+text = "Unlock Red Generator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="priceLabel" type="Label" parent="unlockBg" unique_id=977836851]
+layout_mode = 0
+offset_top = 27.0
+offset_right = 304.0
+offset_bottom = 61.0
+theme = ExtResource("3_theme")
+text = "Price: 10000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventWarningNew" parent="." unique_id=1250520229 instance=ExtResource("8_cd438")]
+layout_mode = 1
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="buyButton" to="." method="on_buy_button_pressed"]
+[connection signal="pressed" from="openInvetoryButton" to="." method="_on_open_invetory_button_pressed"]

@@ -1,0 +1,31 @@
+{
+	"Battery_Item": {
+		"name": "Battery",
+		"description": "Increase production by 2x",
+		"upgrade_name": "battery_item_upgrade",
+		"icon_path": "res://assets/items/battery_item_64x64.png",
+		"space": [1,1]
+	},
+	"Hourglass_Item": {
+		"name": "The Hourglass",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "hourglass_item_upgrade",
+		"icon_path": "res://assets/items/hourglass_item_64x128.png",
+		"space": [1,2]
+	},
+	"Energy_Core_Item": {
+		"name": "Energy Core",
+		"description": "Increases the production by 10x but also increases the time it takes to produce.",
+		"upgrade_name": "energy_core_item_upgrade",
+		"icon_path": "res://assets/items/energy_core_item_128x128.png",
+		"space": [2,2]
+	},
+	"Shovel_Item": {
+		"name": "Shovel",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"icon_path": "res://assets/items/shovel_item_128x64.png",
+		"space": [2,1]
+	}
+		
+}

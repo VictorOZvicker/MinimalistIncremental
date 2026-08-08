@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bbdy4y4ppdiid"]
+
+[ext_resource type="Script" uid="uid://dmo03c021rwmw" path="res://scenes/generator/generators_scene.gd" id="1_cj4ya"]
+[ext_resource type="PackedScene" uid="uid://nsdpkhevqh1g" path="res://nodes/BuyAmountButton.tscn" id="2_cw4ky"]
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="3_theme"]
+
+[node name="GeneratorsScreen" type="Control" unique_id=1879962665]
+custom_minimum_size = Vector2(770, 460)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -190.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cj4ya")
+
+[node name="Base" type="ColorRect" parent="." unique_id=1288316743]
+custom_minimum_size = Vector2(770, 460)
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 460.0
+color = Color(0.050980393, 0.06666667, 0.09019608, 1)
+
+[node name="GeneratorsScroll" type="ScrollContainer" parent="." unique_id=1919441930]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 447.0
+offset_bottom = 460.0
+theme = ExtResource("3_theme")
+horizontal_scroll_mode = 0
+tile_scroll_hint = true
+
+[node name="GeneratorsGrid" type="VBoxContainer" parent="GeneratorsScroll" unique_id=1919441931]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="buyAmountButtons" type="HBoxContainer" parent="." unique_id=683933080]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 35.0
+
+[node name="BuyAmountButton" parent="buyAmountButtons" unique_id=1337680443 instance=ExtResource("2_cw4ky")]
+layout_mode = 2
+
+[node name="upgradesScroll" type="ScrollContainer" parent="." unique_id=1173825424]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 35.0
+offset_right = 770.0
+offset_bottom = 460.0
+theme = ExtResource("3_theme")
+
+[node name="upgradesGrid" type="GridContainer" parent="upgradesScroll" unique_id=649404830]
+layout_mode = 2
+columns = 4
+
+[connection signal="buy_amount_changed" from="buyAmountButtons/BuyAmountButton" to="." method="on_buy_amount_button_buy_amount_changed"]

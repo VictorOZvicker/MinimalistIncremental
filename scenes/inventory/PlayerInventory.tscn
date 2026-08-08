@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bg0ahqah43iym"]
+
+[ext_resource type="Script" uid="uid://bbpj1gillrar3" path="res://scenes/inventory/player_inventory.gd" id="1_pinv"]
+
+[node name="PlayerInventory" type="Control" unique_id=2067585495]
+custom_minimum_size = Vector2(408, 390)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pinv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=984731300]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 390.0
+mouse_filter = 2
+color = Color(0.22352941, 0.10980392, 0.14901961, 1)
+
+[node name="infoLabel" type="Label" parent="." unique_id=962188018]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 28
+text = "YOUR ITEMS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1088063603]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 408.0
+offset_bottom = 386.0
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 6
+
+[node name="highlightLayer" type="Control" parent="." unique_id=1088063604]
+anchors_preset = 0
+offset_right = 408.0
+offset_bottom = 390.0
+mouse_filter = 2

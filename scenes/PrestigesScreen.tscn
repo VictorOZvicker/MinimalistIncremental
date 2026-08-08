@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://swuh25xl35sx"]
+
+[ext_resource type="Script" uid="uid://bx1dxy1g7o5ef" path="res://scenes/prestiges_screen.gd" id="1_woo08"]
+
+[sub_resource type="Theme" id="Theme_6o53b"]
+
+[node name="Prestiges" type="Control" unique_id=1993726218]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -190.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_woo08")
+
+[node name="base" type="ColorRect" parent="." unique_id=1474539306]
+layout_mode = 0
+offset_right = 770.0
+offset_bottom = 460.0
+color = Color(0.19561592, 0.26826793, 0.29628256, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1043650103]
+layout_mode = 0
+offset_right = 770.0
+offset_bottom = 460.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=17397889]
+custom_minimum_size = Vector2(770, 460)
+layout_mode = 2
+
+[node name="PrestigeLabels" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=912083980]
+custom_minimum_size = Vector2(345, 165)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="prestigeLabel" type="Label" parent="ScrollContainer/VBoxContainer/PrestigeLabels" unique_id=1782680205]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Prestige!"
+horizontal_alignment = 1
+
+[node name="prestigeInfo" type="Label" parent="ScrollContainer/VBoxContainer/PrestigeLabels" unique_id=159923128]
+custom_minimum_size = Vector2(0, 57)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Start over. Lose all your  generators and upgrades  and increase your generator multiplier."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="prestigePower" type="Label" parent="ScrollContainer/VBoxContainer/PrestigeLabels" unique_id=69016268]
+layout_mode = 2
+theme = SubResource("Theme_6o53b")
+theme_override_font_sizes/font_size = 12
+text = "Current prestige effectiveness:
+20%"
+horizontal_alignment = 1
+
+[node name="prestigeAmount" type="Label" parent="ScrollContainer/VBoxContainer/PrestigeLabels" unique_id=97741904]
+layout_mode = 2
+text = "Amount to gain: 0"
+horizontal_alignment = 1
+
+[node name="prestigeButton" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=498620356]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Prestige"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=118352378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "
+Prestiges Upgrades
+These upgrades are bought with prestige"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prestigeUpgrades" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1637078043]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/prestigeButton" to="." method="_on_prestige_button_pressed"]

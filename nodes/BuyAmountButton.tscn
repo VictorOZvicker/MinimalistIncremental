@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://nsdpkhevqh1g"]
+
+[ext_resource type="Script" uid="uid://dyllesgp8gcm5" path="res://nodes/buy_amount_button.gd" id="1_n66qm"]
+
+[node name="BuyAmountButton" type="Control" unique_id=1337680443]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -928.0
+offset_bottom = -508.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n66qm")
+
+[node name="Button" type="Button" parent="." unique_id=1060951768]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 12
+text = "1"
+
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]

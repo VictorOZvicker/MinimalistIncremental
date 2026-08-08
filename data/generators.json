@@ -1,0 +1,154 @@
+{
+	"Red_Generator": {
+		"name": "Red",
+		"cost": "5",
+		"cost_increase": 1.07,
+		"base_production": "1",
+		"wait_time": 1.0,
+		"icon_path": "",
+		"color": [
+			0.45,
+			0.07,
+			0.14
+		],
+		"tags": [
+			"PRIMARY",
+			"WARM"
+		]
+	},
+	"Yellow_Generator": {
+		"name": "Yellow",
+		"cost": "1500",
+		"cost_increase": 1.08,
+		"base_production": "207",
+		"wait_time": 1.5,
+		"icon_path": "",
+		"color": [
+			0.4,
+			0.32,
+			0.04
+		],
+		"tags": [
+			"PRIMARY",
+			"WARM"
+		]
+	},
+	"Blue_Generator": {
+		"name": "Blue",
+		"cost": "4.5e5",
+		"cost_increase": 1.09,
+		"base_production": "3.8e4",
+		"wait_time": 2.0,
+		"icon_path": "",
+		"color": [
+			0.05,
+			0.12,
+			0.35
+		],
+		"tags": [
+			"PRIMARY",
+			"COOL"
+		]
+	},
+	"Orange_Generator": {
+		"name": "Orange",
+		"cost": "1.35e8",
+		"cost_increase": 1.1,
+		"base_production": "6.6e6",
+		"wait_time": 2.5,
+		"icon_path": "",
+		"color": [
+			0.42,
+			0.2,
+			0.02
+		],
+		"tags": [
+			"SECONDARY",
+			"WARM"
+		]
+	},
+	"Green_Generator": {
+		"name": "Green",
+		"cost": "4e10",
+		"cost_increase": 1.11,
+		"base_production": "1.08e9",
+		"wait_time": 3.0,
+		"icon_path": "",
+		"color": [
+			0.02,
+			0.18,
+			0.13
+		],
+		"tags": [
+			"SECONDARY",
+			"COOL"
+		]
+	},
+	"Purple_Generator": {
+		"name": "Purple",
+		"cost": "1.2e13",
+		"cost_increase": 1.12,
+		"base_production": "1.75e11",
+		"wait_time": 3.5,
+		"icon_path": "",
+		"color": [
+			0.22,
+			0.05,
+			0.32
+		],
+		"tags": [
+			"SECONDARY",
+			"COOL"
+		]
+	},
+	"Gray_Generator": {
+		"name": "Gray",
+		"cost": "3.6e15",
+		"cost_increase": 1.13,
+		"base_production": "2.76e13",
+		"wait_time": 4.0,
+		"icon_path": "",
+		"color": [
+			0.22,
+			0.22,
+			0.24
+		],
+		"tags": [
+			"NEUTRAL"
+		]
+	},
+	"Black_Generator": {
+		"name": "Black",
+		"cost": "1.1e18",
+		"cost_increase": 1.14,
+		"base_production": "4.3e15",
+		"wait_time": 4.5,
+		"icon_path": "",
+		"color": [
+			0.06,
+			0.06,
+			0.08
+		],
+		"tags": [
+			"NEUTRAL",
+			"DARK"
+		]
+	},
+	"White_Generator": {
+		"name": "White",
+		"cost": "3.3e20",
+		"cost_increase": 1.15,
+		"base_production": "6.5e17",
+		"wait_time": 5.0,
+		"icon_path": "",
+		"color": [
+			0.72,
+			0.72,
+			0.75
+		],
+		"tags": [
+			"NEUTRAL",
+			"LIGHT"
+		]
+	}
+}

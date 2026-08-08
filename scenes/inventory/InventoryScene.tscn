@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://du7b6hqd0tmom"]
+
+[ext_resource type="Script" uid="uid://b2k4d5favl8j8" path="res://scenes/inventory/inventory_scene.gd" id="1_dvecq"]
+[ext_resource type="PackedScene" uid="uid://bg0ahqah43iym" path="res://scenes/inventory/PlayerInventory.tscn" id="2_hij5h"]
+[ext_resource type="Script" uid="uid://cv85w4kyxvyck" path="res://scenes/inventory/generator_grid.gd" id="3_ggrid"]
+
+[node name="InventoryScene" type="Control" unique_id=1043982428]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -190.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dvecq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1341710953]
+layout_mode = 0
+offset_right = 770.0
+offset_bottom = 460.0
+color = Color(0.27225333, 0.1873377, 0.048218355, 1)
+
+[node name="inventoryOwnerLabel" type="Label" parent="." unique_id=1247537965]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 178.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 14
+text = "Red Generator's Inventory"
+
+[node name="Button" type="Button" parent="." unique_id=467917208]
+layout_mode = 0
+offset_left = 730.0
+offset_top = -1.0
+offset_right = 770.0
+offset_bottom = 40.0
+
+[node name="screenSeparator" type="HBoxContainer" parent="." unique_id=736467020]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 770.0
+offset_bottom = 460.0
+theme_override_constants/separation = 0
+
+[node name="generatorArea" type="Control" parent="screenSeparator" unique_id=1445191200]
+custom_minimum_size = Vector2(362, 390)
+layout_mode = 2
+script = ExtResource("3_ggrid")
+
+[node name="slotsGrid" type="GridContainer" parent="screenSeparator/generatorArea" unique_id=1445191201]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 384.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="itemsLayer" type="Control" parent="screenSeparator/generatorArea" unique_id=1445191202]
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="previewLayer" type="Control" parent="screenSeparator/generatorArea" unique_id=1445191203]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="PlayerInventory" parent="screenSeparator" unique_id=2067585495 instance=ExtResource("2_hij5h")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
