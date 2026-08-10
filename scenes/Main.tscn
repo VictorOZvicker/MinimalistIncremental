@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://bmaabveh7tynb" path="res://scenes/main.gd" id="1_0bbpv"]
 [ext_resource type="PackedScene" uid="uid://bbdy4y4ppdiid" path="res://scenes/generator/GeneratorsScreen.tscn" id="1_rvslj"]
 [ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="4_rarhs"]
-[ext_resource type="Texture2D" uid="uid://cnrkcosxxwg3d" path="res://assets/menu_generators_button.png" id="4_vcsgt"]
-[ext_resource type="PackedScene" uid="uid://swuh25xl35sx" path="res://scenes/PrestigesScreen.tscn" id="5_jlsqs"]
-[ext_resource type="Texture2D" uid="uid://dwtfw8kyfo4d" path="res://assets/menu_prestiges_button.png" id="7_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://cnrkcosxxwg3d" path="res://assets/UI/menu_generators_button.png" id="4_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://swuh25xl35sx" path="res://scenes/prestige/PrestigesScreen.tscn" id="5_jlsqs"]
+[ext_resource type="PackedScene" uid="uid://cnhdrihlx7r7l" path="res://scenes/weaponize/WeaponizeScreen.tscn" id="5_q8u5g"]
+[ext_resource type="Texture2D" uid="uid://dwtfw8kyfo4d" path="res://assets/UI/menu_prestiges_button.png" id="7_nxtc6"]
 [ext_resource type="Script" uid="uid://bee3ko2qq3enh" path="res://classes/gameEvents/SingleTimeEvent.gd" id="9_q8u5g"]
 
 [node name="Main" type="Control" unique_id=1283620523]
@@ -67,6 +68,9 @@ layout_mode = 2
 [node name="PrestigesScreen" parent="screenSeparator/scoreBoardSeparator/screens" unique_id=1993726218 instance=ExtResource("5_jlsqs")]
 layout_mode = 2
 
+[node name="WeaponizeScreen" parent="screenSeparator/scoreBoardSeparator/screens" unique_id=1114375821 instance=ExtResource("5_q8u5g")]
+layout_mode = 2
+
 [node name="menuBar" type="ColorRect" parent="screenSeparator" unique_id=266728827]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
@@ -84,7 +88,10 @@ layout_mode = 2
 texture_normal = ExtResource("4_vcsgt")
 
 [node name="prestigeButton" type="TextureButton" parent="screenSeparator/menuBar/VBoxContainer" unique_id=102133920]
-visible = false
+layout_mode = 2
+texture_normal = ExtResource("7_nxtc6")
+
+[node name="weaponizeButton" type="TextureButton" parent="screenSeparator/menuBar/VBoxContainer" unique_id=1037187388]
 layout_mode = 2
 texture_normal = ExtResource("7_nxtc6")
 
@@ -96,3 +103,4 @@ metadata/_custom_type_script = "uid://bee3ko2qq3enh"
 
 [connection signal="pressed" from="screenSeparator/menuBar/VBoxContainer/generatorsButton" to="." method="_on_generators_button_pressed"]
 [connection signal="pressed" from="screenSeparator/menuBar/VBoxContainer/prestigeButton" to="." method="_on_prestige_button_pressed"]
+[connection signal="pressed" from="screenSeparator/menuBar/VBoxContainer/weaponizeButton" to="." method="_on_weaponize_button_pressed"]

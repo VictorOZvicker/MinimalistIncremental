@@ -3,7 +3,7 @@ extends Control
 
 
 func _ready() -> void:
-	GameEventsManager.events.player_prestiged.connect(on_player_prestige)
+	GameEventsManager.player_prestiged.connect(on_player_prestige)
 	reload_generators()
 	reload_upgrades()
 

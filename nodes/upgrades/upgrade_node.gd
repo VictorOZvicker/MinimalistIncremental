@@ -11,12 +11,12 @@ func _ready():
 	self.hide()
 	if not definition.icon_path.is_empty():
 		$iconArt.texture = load(definition.icon_path)
-	GameEventsManager.events.player_money_changed.connect(on_money_changed)
+	GameEventsManager.player_money_changed.connect(on_money_changed)
 
 func _on_buy_button_pressed() -> void:
 	if Game.get_player().buy_upgrade(upgrade_name, definition.currency):
 		amount = Game.get_player().get_upgrade_amount(upgrade_name)
-		GameEventsManager.events.open_upgrade_tooltip.emit(self.definition, self.upgrade_name, self.global_position)
+		GameEventsManager.open_upgrade_tooltip.emit(self.definition, self.upgrade_name, self.global_position)
 		update_upgrade_node()
 
 func on_money_changed(_amount: BigNumber):
@@ -33,7 +33,7 @@ func update_upgrade_node():
 		return
 
 func _on_mouse_entered() -> void:
-	GameEventsManager.events.open_upgrade_tooltip.emit(self.definition, self.upgrade_name, self.global_position)
+	GameEventsManager.open_upgrade_tooltip.emit(self.definition, self.upgrade_name, self.global_position)
 
 func _on_mouse_exited() -> void:
-	GameEventsManager.events.open_upgrade_tooltip.emit()
+	GameEventsManager.open_upgrade_tooltip.emit()

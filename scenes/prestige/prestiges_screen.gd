@@ -1,11 +1,11 @@
 extends Control
 
 func _ready() -> void:
-	GameEventsManager.events.player_money_changed.connect(on_money_changed)
+	GameEventsManager.player_money_changed.connect(on_money_changed)
 	load_prestige_upgrades()
 
 func on_money_changed(_new_amount: BigNumber):
-	var prestiges_to_gain = ProductionCalculator.get_prestiges_gain(Game.get_player().upgrades)
+	var prestiges_to_gain = Game.get_player().get_prestige_gain()
 	
 	$ScrollContainer/VBoxContainer/PrestigeLabels/prestigeAmount.text = "Amount to gain: " + str(prestiges_to_gain)
 
@@ -20,7 +20,7 @@ func load_prestige_upgrades():
 	if not upgrades.is_empty():
 		for child in upgrades:
 			child.queue_free()
-	
+			
 	for upgrade_name in DataLoader.get_all_upgrades():
 		var current_upgrade             = upgrade_node.instantiate()
 		var upgrade_definition: Upgrade = DataLoader.get_upgrade(upgrade_name)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnr2yskvxwg3h"]
 
 [ext_resource type="Script" uid="uid://c60vg5gfie7ur" path="res://scenes/inventory/player_inventory_item_slot.gd" id="1_qaw8g"]
-[ext_resource type="Texture2D" uid="uid://bsw5vta07m8te" path="res://assets/inventory_slot_64x64.png" id="2_qaw8g"]
+[ext_resource type="Texture2D" uid="uid://bsw5vta07m8te" path="res://assets/UI/inventory_slot_64x64.png" id="2_qaw8g"]
 
 [node name="PlayerInventoryItemSlot" type="Control" unique_id=559820918]
 custom_minimum_size = Vector2(64, 64)

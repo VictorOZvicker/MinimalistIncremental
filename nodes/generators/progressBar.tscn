@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c138bwkgahih1"]
 
 [ext_resource type="Script" uid="uid://bu5wta716hpp4" path="res://nodes/generators/progress_bar.gd" id="1_0brme"]
-[ext_resource type="Texture2D" uid="uid://cbq61wlh7p5qw" path="res://assets/progress_bar.png" id="2_0brme"]
+[ext_resource type="Texture2D" uid="uid://cbq61wlh7p5qw" path="res://assets/UI/progress_bar.png" id="2_0brme"]
 
 [node name="ProgressBar" type="Control" unique_id=2041368337]
 custom_minimum_size = Vector2(304, 48)

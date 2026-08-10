@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cnhdrihlx7r7l"]
+
+[ext_resource type="Script" uid="uid://cvv6y8gy30brp" path="res://scenes/weaponize/weaponize_screen.gd" id="1_kqk08"]
+[ext_resource type="PackedScene" uid="uid://brpt1famgcruv" path="res://nodes/items/itemSelectionNode.tscn" id="1_ql55y"]
+
+[node name="WeaponizeScreen" type="Control" unique_id=1114375821]
+custom_minimum_size = Vector2(770, 460)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -190.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqk08")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1317943172]
+custom_minimum_size = Vector2(770, 460)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.2734375, 0.2734375, 0.2734375, 1)
+
+[node name="itemSelection" type="HBoxContainer" parent="." unique_id=1348591598]
+custom_minimum_size = Vector2(770, 288)
+layout_mode = 0
+offset_top = 86.0
+offset_right = 770.0
+offset_bottom = 374.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ItemSelectionNode" parent="itemSelection" unique_id=801544657 instance=ExtResource("1_ql55y")]
+layout_mode = 2
+
+[node name="ItemSelectionNode2" parent="itemSelection" unique_id=1925362369 instance=ExtResource("1_ql55y")]
+layout_mode = 2
+
+[node name="ItemSelectionNode3" parent="itemSelection" unique_id=1949726199 instance=ExtResource("1_ql55y")]
+layout_mode = 2
+
+[node name="ItemSelectionNode4" parent="itemSelection" unique_id=1849530130 instance=ExtResource("1_ql55y")]
+layout_mode = 2

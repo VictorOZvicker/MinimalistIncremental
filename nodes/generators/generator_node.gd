@@ -8,9 +8,9 @@ var amount: BigNumber
 var production: BigNumber
 
 func _ready() -> void:
-	GameEventsManager.events.update_gen_info.connect(on_gen_updated)
-	GameEventsManager.events.generator_unlocked.connect(on_unlock_generator)
-	GameEventsManager.events.player_money_changed.connect(on_money_changed)
+	GameEventsManager.update_gen_info.connect(on_gen_updated)
+	GameEventsManager.generator_unlocked.connect(on_unlock_generator)
+	GameEventsManager.player_money_changed.connect(on_money_changed)
 
 	if generator_name != "Red_Generator":
 		self.hide()
@@ -57,7 +57,7 @@ func on_unlock_generator(_generator_name: String):
 	if _generator_name == self.generator_name:
 		$unlockBg.hide()
 		$VBoxContainer/ProgressBar.start_timer(self.definition.wait_time_production)
-		GameEventsManager.events.generator_unlocked.disconnect(on_unlock_generator)
+		GameEventsManager.generator_unlocked.disconnect(on_unlock_generator)
 
 func on_production_timer_timeout() -> void:
 	if amount != null and amount.greater_or_equal(1):

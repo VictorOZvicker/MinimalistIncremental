@@ -3,6 +3,7 @@
 		"name": "Battery",
 		"description": "Increase production by 2x",
 		"upgrade_name": "battery_item_upgrade",
+		"rariry": "COMMON",
 		"icon_path": "res://assets/items/battery_item_64x64.png",
 		"space": [1,1]
 	},
@@ -10,6 +11,7 @@
 		"name": "The Hourglass",
 		"description": "Increase production by 5 X time of production",
 		"upgrade_name": "hourglass_item_upgrade",
+		"rariry": "UNCOMMON",
 		"icon_path": "res://assets/items/hourglass_item_64x128.png",
 		"space": [1,2]
 	},
@@ -17,6 +19,7 @@
 		"name": "Energy Core",
 		"description": "Increases the production by 10x but also increases the time it takes to produce.",
 		"upgrade_name": "energy_core_item_upgrade",
+		"rariry": "RARE",
 		"icon_path": "res://assets/items/energy_core_item_128x128.png",
 		"space": [2,2]
 	},
@@ -24,6 +27,7 @@
 		"name": "Shovel",
 		"description": "Increase production by 5 X time of production",
 		"upgrade_name": "shovel_item_upgrade",
+		"rariry": "EPIC",
 		"icon_path": "res://assets/items/shovel_item_128x64.png",
 		"space": [2,1]
 	}

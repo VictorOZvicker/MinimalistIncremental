@@ -78,14 +78,15 @@ static func construct_upgrade(_data: Dictionary) -> Upgrade:
 static func contruct_item(_data: Dictionary) -> GeneratorItem:
 	if _data == null: return null
 	
-	var item_name: String            = _data.get("name", "")
-	var item_description: String     = _data.get("description", "") 
-	var item_upgrade_name: String    = _data.get("upgrade_name", "")
-	var item_icon_path: String       = _data.get("icon_path", "")
-	var item_space_array: Array      = _data.get("space", [1,1])
+	var item_name: String             = _data.get("name", "")
+	var item_description: String      = _data.get("description", "") 
+	var item_upgrade_name: String     = _data.get("upgrade_name", "")
+	var item_icon_path: String        = _data.get("icon_path", "")
+	var item_space_array: Array       = _data.get("space", [1,1])
+	var item_rariry: Enums.ItemRarity = Enums.ItemRarity.get(_data.get("rarity", ""), 0)
 	var item_space := Vector2i(item_space_array[0], item_space_array[1])
 	
-	return GeneratorItem.new(item_name, item_description, item_upgrade_name, item_icon_path, item_space)
+	return GeneratorItem.new(item_name, item_description, item_upgrade_name, item_rariry, item_icon_path, item_space)
 	
 static func _build_cache(_path: String, _constructor: Callable, _cost_getter: Callable) -> Dictionary:
 	var data = load_json(_path)

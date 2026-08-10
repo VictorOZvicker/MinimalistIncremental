@@ -3,11 +3,11 @@ extends Control
 var upgrade_tooltip: Control = null
 
 func _ready() -> void:
-	GameEventsManager.events.player_money_changed.connect(on_money_changed)
-	GameEventsManager.events.player_prestige_points_changed.connect(on_player_prestige)
-	GameEventsManager.events.open_inventory.connect(on_open_inventory)
-	GameEventsManager.events.prestige_unlocked.connect(on_prestige_unlocked, CONNECT_ONE_SHOT)
-	GameEventsManager.events.open_upgrade_tooltip.connect(on_upgrade_tooltip_opened)
+	GameEventsManager.player_money_changed.connect(on_money_changed)
+	GameEventsManager.player_prestige_points_changed.connect(on_player_prestige)
+	GameEventsManager.open_inventory.connect(on_open_inventory)
+	GameEventsManager.prestige_unlocked.connect(on_prestige_unlocked, CONNECT_ONE_SHOT)
+	GameEventsManager.open_upgrade_tooltip.connect(on_upgrade_tooltip_opened)
 	
 func _process(_delta: float) -> void:
 	pass
@@ -26,9 +26,13 @@ func _on_generators_button_pressed() -> void:
 func _on_prestige_button_pressed() -> void:
 	change_screen("PrestigesScreen")
 
+func _on_weaponize_button_pressed() -> void:
+	change_screen("WeaponizeScreen")
+	GameEventsManager.prepare_weaponize.emit()
+
 func on_money_changed(_amount: BigNumber):
 	$screenSeparator/scoreBoardSeparator/ScoreBoard/scoreInformation/moneyLabel.text = "$: %s" % _amount
-	
+
 func on_player_prestige(_amount: BigNumber):
 	$screenSeparator/scoreBoardSeparator/ScoreBoard/scoreInformation/prestigeLabel.text = "Prestiges: %s" % _amount
 

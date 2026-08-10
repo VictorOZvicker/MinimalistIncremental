@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://brpt1famgcruv"]
+
+[ext_resource type="Texture2D" uid="uid://civldp1b1foux" path="res://assets/UI/itemSelection_bg_160x288.png" id="1_wyy4j"]
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="1_ylobp"]
+[ext_resource type="Script" uid="uid://dy5vumswpqgcj" path="res://nodes/items/item_selection_node.gd" id="2_ie6pb"]
+[ext_resource type="Texture2D" uid="uid://cmi1j05sia5t3" path="res://assets/items/hourglass_item_64x128.png" id="3_ie6pb"]
+
+[node name="ItemSelectionNode" type="Control" unique_id=801544657]
+custom_minimum_size = Vector2(160, 288)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -800.0
+offset_bottom = -252.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme = ExtResource("1_ylobp")
+script = ExtResource("2_ie6pb")
+
+[node name="selectionBg" type="TextureRect" parent="." unique_id=1682792683]
+custom_minimum_size = Vector2(160, 288)
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 288.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("1_wyy4j")
+
+[node name="itemIconBg" type="ColorRect" parent="." unique_id=177333843]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 144.0
+offset_bottom = 141.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(0.47843137, 0.47843137, 0.47843137, 0.28235295)
+
+[node name="itemIcon" type="TextureRect" parent="." unique_id=663507170]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 144.0
+offset_bottom = 141.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("3_ie6pb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="infoLabels" type="VBoxContainer" parent="." unique_id=803417537]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 140.0
+offset_right = 144.0
+offset_bottom = 284.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="itemName" type="Label" parent="infoLabels" unique_id=116779081]
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 12
+text = "Item name Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="itemDescription" type="Label" parent="infoLabels" unique_id=175688184]
+custom_minimum_size = Vector2(128, 78)
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 8
+text = "Teste de Letra ASDASDASDSADADSADASDASDASDASDASDASD ASDASDADSADASD"
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="itemRarity" type="Label" parent="infoLabels" unique_id=181211806]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 12
+text = "Common"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="amountOwned" type="Label" parent="infoLabels" unique_id=700127481]
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_colors/font_color = Color(0.6862745, 0.6117647, 0.101960786, 1)
+theme_override_font_sizes/font_size = 8
+text = "# 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="selectionIndicator" type="ReferenceRect" parent="." unique_id=1871990500]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 159.0
+offset_bottom = 287.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+border_color = Color(0.30980393, 1, 0.105882354, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="selectButtton" type="TextureButton" parent="." unique_id=1390029570]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 288.0
+mouse_behavior_recursive = 2
+
+[connection signal="pressed" from="selectButtton" to="." method="_on_select_buttton_pressed"]

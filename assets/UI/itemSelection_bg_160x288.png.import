@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnrkcosxxwg3d"
-path="res://.godot/imported/menu_generators_button.png-7b0945278bcadce13485e230d332b6f8.ctex"
+uid="uid://civldp1b1foux"
+path="res://.godot/imported/itemSelection_bg_160x288.png-a14d69cd902aabd49804b204c9b3ecc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu_generators_button.png"
-dest_files=["res://.godot/imported/menu_generators_button.png-7b0945278bcadce13485e230d332b6f8.ctex"]
+source_file="res://assets/UI/itemSelection_bg_160x288.png"
+dest_files=["res://.godot/imported/itemSelection_bg_160x288.png-a14d69cd902aabd49804b204c9b3ecc6.ctex"]
 
 [params]
 

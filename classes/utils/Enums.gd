@@ -27,8 +27,12 @@ enum UpgradeBonusTags {
 	UNIQUE
 }
 
-enum UniqueUpgradeNames {
-	TIME_FLUX_UPGRADE
+enum ItemRarity {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	EPIC,
+	LEGENDARY
 }
 
 static func gen_tags_from_names(_names: Array) -> Array[GenTags]:

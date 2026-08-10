@@ -102,7 +102,6 @@ static func get_generator_production(_generator_name: String, _amount_owned: Big
 		var new_pow_exponent = upgrade.upgrade_effect.apply_upgrade(BigNumber.new(1), upgrade_amount, Enums.UpgradeBonusTags.POW, definition)
 		if new_pow_exponent is float: pow_exponents.append(new_pow_exponent)
 	
-	
 	var lvl_bonus = _amount_owned.div(25).add(1).to_int()
 	var prestige_points = Game.get_player().prestige_points
 	var prestige_bonus = prestige_points.mul(Game.get_player().prestige_power).add(1) if prestige_points.greater_than(0) else BigNumber.new(1)
@@ -114,11 +113,7 @@ static func get_generator_production(_generator_name: String, _amount_owned: Big
 		
 	return effective_production
 
-static func get_prestiges_gain(_upgrades: Dictionary) -> BigNumber:
-	
-	var amount_owned = Game.get_player().prestige_points
-	var current_money = Game.get_player().total_money
-	
+static func get_prestige_gain(_total_money: BigNumber, _current_prestiges: BigNumber, _upgrades: Dictionary) -> BigNumber:
 	var prestige_bonus = BigNumber.new(1)
 	
 	for upgrade_name in _upgrades:
@@ -127,6 +122,13 @@ static func get_prestiges_gain(_upgrades: Dictionary) -> BigNumber:
 		
 		prestige_bonus = upgrade.upgrade_effect.apply_upgrade(prestige_bonus, times_bought, Enums.UpgradeBonusTags.PRESTIGE)
 	
-	var amount_gain = current_money.div(BigNumber.parseBigNumber("1e7").mul(amount_owned.add(1))).bigNumber_pow(0.5).mul(prestige_bonus).to_floor()
+	var amount_gain = _total_money.div(BigNumber.parseBigNumber("1e7").mul(_current_prestiges.add(1))).bigNumber_pow(0.5).mul(prestige_bonus).to_floor()
 	
 	return amount_gain
+
+static func get_weaponize_items_selection() -> Array[GeneratorItem]:
+	var items_for_selection: Array[GeneratorItem] = []
+	items_for_selection.append(DataLoader.get_item("Battery_Item"))
+	items_for_selection.append(DataLoader.get_item("Hourglass_Item"))
+	items_for_selection.append(DataLoader.get_item("Shovel_Item"))
+	return items_for_selection

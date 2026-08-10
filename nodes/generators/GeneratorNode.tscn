@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://coty1nf00k3go"]
 
 [ext_resource type="Script" uid="uid://b6myqcjlrwsbl" path="res://nodes/generators/generator_node.gd" id="1_okw1s"]
-[ext_resource type="Texture2D" uid="uid://6ciekh15g3pj" path="res://assets/button_frame_128x128.png" id="3_eghbe"]
+[ext_resource type="Texture2D" uid="uid://6ciekh15g3pj" path="res://assets/UI/button_frame_128x128.png" id="3_eghbe"]
 [ext_resource type="PackedScene" uid="uid://c138bwkgahih1" path="res://nodes/generators/progressBar.tscn" id="3_pegst"]
 [ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="3_theme"]
-[ext_resource type="Texture2D" uid="uid://c1nuvkkgcag3m" path="res://assets/base_32x32.png" id="4_utlpr"]
+[ext_resource type="Texture2D" uid="uid://c1nuvkkgcag3m" path="res://assets/UI/base_32x32.png" id="4_utlpr"]
 [ext_resource type="FontFile" uid="uid://bi2hafc1eqx48" path="res://assets/fonts/PixelCode.ttf" id="6_2uex6"]
 [ext_resource type="PackedScene" uid="uid://bd0c0tcrirdra" path="res://nodes/events/eventWarningNew.tscn" id="8_cd438"]
 

@@ -12,6 +12,8 @@ var upgrades: Dictionary[String, int]
 var prestige_points: BigNumber
 var prestige_power: float
 
+var luck: int
+
 var gen_buy_amount: int = 1:
 	set(value):
 		gen_buy_amount = clampi(value, 1, 1_000_000)
@@ -41,6 +43,7 @@ func _init():
 	self.generators_inventory = {}
 	self.upgrades             = {}
 	self.prestige_power       = 0.2
+	self.luck                 = 100
 	
 	self.gen_bought.connect(initialize_generator_inventory)
 	
@@ -104,19 +107,16 @@ func produce(_amount: BigNumber):
 	self.total_money = self.total_money.add(_amount)
 	self.money_changed.emit(self.money)
 
-func get_generator_amount(_generator_name: String) -> BigNumber:
-	return self.generators.get(_generator_name, BigNumber.new(0))
+func get_generator_amount(_generator_name: String) -> BigNumber: return self.generators.get(_generator_name, BigNumber.new(0))
 
-func get_upgrade_amount(_upgrade_name: String) -> int:
-	return self.upgrades.get(_upgrade_name, 0)
+func get_upgrade_amount(_upgrade_name: String) -> int: return self.upgrades.get(_upgrade_name, 0)
 
 func get_generator_buy_amount(_generator_name: String) -> int:
 	if self.max_gen_buy:
 		return ProductionCalculator.get_max_affordable_generator_amount(_generator_name, get_generator_amount(_generator_name), self.upgrades, self.money)
 	return self.gen_buy_amount
 
-func get_generator_cost(_generator_name: String) -> BigNumber:
-	return ProductionCalculator.get_generator_cost(_generator_name, get_generator_amount(_generator_name), self.upgrades, get_generator_buy_amount(_generator_name))
+func get_generator_cost(_generator_name: String) -> BigNumber: return ProductionCalculator.get_generator_cost(_generator_name, get_generator_amount(_generator_name), self.upgrades, get_generator_buy_amount(_generator_name))
 
 func get_upgrade_cost(_upgrade_name: String) -> BigNumber:
 	var upgrade := DataLoader.get_upgrade(_upgrade_name)
@@ -137,12 +137,19 @@ func get_generator_production(_generator_name: String) -> BigNumber:
 	total_generator_upgrades.merge(self.upgrades)
 	return ProductionCalculator.get_generator_production(_generator_name, get_generator_amount(_generator_name), total_generator_upgrades)
 
+func get_generator_inventory(_generator_name: String) -> GeneratorInventory: return self.generators_inventory.get(_generator_name)
+
+func get_prestige_gain() -> BigNumber: return ProductionCalculator.get_prestige_gain(self.total_money, self.prestige_points, self.upgrades)
+
+@warning_ignore("integer_division")
+func get_luck() -> int: return self.luck/100
+
 func warm_data_cache():
 	DataLoader.get_all_generators()
 	DataLoader.get_all_upgrades()
 
 func prestige():
-	var prestige_amount = ProductionCalculator.get_prestiges_gain(self.upgrades)
+	var prestige_amount = self.get_prestige_gain()
 	
 	if prestige_amount.less_than(self.prestige_points):
 		return
@@ -155,9 +162,6 @@ func prestige():
 func initialize_generator_inventory(_generator_name: String):
 	if self.generators_inventory.has(_generator_name): return
 	self.generators_inventory[_generator_name] = GeneratorInventory.new()
-
-func get_generator_inventory(_generator_name: String) -> GeneratorInventory:
-	return self.generators_inventory.get(_generator_name)
 
 func weaponize(_item: String):
 	self.items[_item] = self.items.get_or_add(_item, "")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1nuvkkgcag3m"
-path="res://.godot/imported/base_32x32.png-2c07a5f73bda905e5703e0cd99cf3136.ctex"
+uid="uid://b5rogqubpbwbj"
+path="res://.godot/imported/prestige_upgrade_button_640x256.png-254e4cfa31b2623a8b9d726b7845f901.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/base_32x32.png"
-dest_files=["res://.godot/imported/base_32x32.png-2c07a5f73bda905e5703e0cd99cf3136.ctex"]
+source_file="res://assets/upgrades/prestige_upgrade_button_640x256.png"
+dest_files=["res://.godot/imported/prestige_upgrade_button_640x256.png-254e4cfa31b2623a8b9d726b7845f901.ctex"]
 
 [params]
 

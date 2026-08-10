@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3fhd2quc4iv7"
-path="res://.godot/imported/menu_upgrades_button.png-43fcff210aebbea8b6025a48357cd650.ctex"
+uid="uid://cbq61wlh7p5qw"
+path="res://.godot/imported/progress_bar.png-6b4c3284a950f9e31f48bce63ed70d2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu_upgrades_button.png"
-dest_files=["res://.godot/imported/menu_upgrades_button.png-43fcff210aebbea8b6025a48357cd650.ctex"]
+source_file="res://assets/UI/progress_bar.png"
+dest_files=["res://.godot/imported/progress_bar.png-6b4c3284a950f9e31f48bce63ed70d2a.ctex"]
 
 [params]
 

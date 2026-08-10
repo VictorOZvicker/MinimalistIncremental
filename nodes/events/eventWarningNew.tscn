@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bd0c0tcrirdra"]
 
 [ext_resource type="Script" uid="uid://ceueu4xr704ns" path="res://nodes/events/event_warning_new.gd" id="1_e1bdw"]
-[ext_resource type="Texture2D" uid="uid://jm0ul6hvx7fw" path="res://assets/warning_new_16x16.png" id="1_s8hkw"]
+[ext_resource type="Texture2D" uid="uid://jm0ul6hvx7fw" path="res://assets/UI/warning_new_16x16.png" id="1_s8hkw"]
 
 [node name="EventWarningNew" type="Control" unique_id=1250520229]
 visible = false

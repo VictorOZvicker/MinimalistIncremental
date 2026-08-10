@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://swuh25xl35sx"]
 
-[ext_resource type="Script" uid="uid://bx1dxy1g7o5ef" path="res://scenes/prestiges_screen.gd" id="1_woo08"]
+[ext_resource type="Script" uid="uid://bx1dxy1g7o5ef" path="res://scenes/prestige/prestiges_screen.gd" id="1_woo08"]
 
 [sub_resource type="Theme" id="Theme_6o53b"]
 
 [node name="Prestiges" type="Control" unique_id=1993726218]
+custom_minimum_size = Vector2(770, 460)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,7 +80,7 @@ These upgrades are bought with prestige"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="prestigeUpgrades" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1637078043]
+[node name="prestigeUpgrades" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=659340308]
 layout_mode = 2
 theme_override_constants/separation = 1
 
