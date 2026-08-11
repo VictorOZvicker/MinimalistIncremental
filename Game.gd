@@ -3,6 +3,13 @@ extends Node
 var _player: Player
 var _unique_upgrade_effect: UniqueEffects
 
+#region Game Settings
+var prestige_min:   float = 1_000_000_000
+var weaponize_min:  float = 1_000_000_000
+var prestige_power: float = 0.20
+#endregion
+
+
 func _ready():
 	self._player = Player.new()
 	self._unique_upgrade_effect = UniqueEffects.new()

@@ -70,4 +70,4 @@ func on_money_changed(_amount: BigNumber):
 	update_labels()
 
 func _on_open_invetory_button_pressed() -> void:
-	GameEventsManager.events.open_inventory.emit(generator_name)
+	GameEventsManager.open_inventory.emit(generator_name)

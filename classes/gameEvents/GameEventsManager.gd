@@ -19,6 +19,8 @@ signal player_prestiged()
 signal prepare_weaponize()
 signal create_item_selection_screen(_determined_items: Array[GeneratorItem])
 
+signal reseted_progression()
+
 signal open_inventory(_generator_name: String)
 signal open_upgrade_tooltip(_target: Upgrade, _uid: String, _position: float)
 #endregion
@@ -32,6 +34,7 @@ func _ready() -> void:
 	player.prestige_points_changed.connect(on_player_prestige_points_changed)
 	player.prestiged.connect(on_player_prestige)
 	player.gen_unlocked.connect(on_gen_unlocked)
+	player.reseted_progression.connect(on_reset_progression)
 	
 	self.prepare_weaponize.connect(on_prepare_weaponize)
 
@@ -62,3 +65,9 @@ func on_prestige_reached():
 func on_prepare_weaponize():
 	var determined_items := ProductionCalculator.get_weaponize_items_selection()
 	self.create_item_selection_screen.emit(determined_items)
+
+func weaponize(_item: String): 
+	Game.get_player().weaponize(_item)
+
+func on_reset_progression() -> void:
+	self.reseted_progression.emit()

@@ -33,7 +33,7 @@ signal gen_bought(_generator_name: String)
 signal gen_unlocked(_generator_name: String)
 signal upgrade_bought(_upgrade_name: String)
 
-signal weaponized()
+signal reseted_progression()
 
 func _init():
 	self.money                = BigNumber.new(5)
@@ -42,7 +42,7 @@ func _init():
 	self.generators           = {}
 	self.generators_inventory = {}
 	self.upgrades             = {}
-	self.prestige_power       = 0.2
+	self.prestige_power       = Game.prestige_power
 	self.luck                 = 100
 	
 	self.gen_bought.connect(initialize_generator_inventory)
@@ -151,10 +151,10 @@ func warm_data_cache():
 func prestige():
 	var prestige_amount = self.get_prestige_gain()
 	
-	if prestige_amount.less_than(self.prestige_points):
+	if self.total_money.less_than(Game.prestige_min):
 		return
 	
-	self.prestige_points = prestige_amount
+	self.prestige_points = prestige_points.add(prestige_amount)
 	self.reset_progression()
 	self.prestige_points_changed.emit(self.prestige_points)
 	self.prestiged.emit()
@@ -164,9 +164,9 @@ func initialize_generator_inventory(_generator_name: String):
 	self.generators_inventory[_generator_name] = GeneratorInventory.new()
 
 func weaponize(_item: String):
-	self.items[_item] = self.items.get_or_add(_item, "")
+	if self.prestige_points.less_than(Game.weaponize_min): return
+	self.items[_item] = self.items.get_or_add(_item, "") + 1
 	self.reset_progression(true, true)
-	self.weaponized.emit()
 
 func reset_progression(_reset_all_upgrades: bool = false, _reset_prestige: bool = false):
 	var remaining_upgrades: Dictionary
@@ -179,3 +179,4 @@ func reset_progression(_reset_all_upgrades: bool = false, _reset_prestige: bool 
 	if _reset_prestige: self.prestige_points = BigNumber.new(0)
 	self.money = BigNumber.new(5)
 	self.money_changed.emit(self.money)
+	self.reseted_progression.emit()

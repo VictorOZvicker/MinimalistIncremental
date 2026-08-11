@@ -90,7 +90,6 @@ expand_margin_bottom = 2.0
 [resource]
 default_font = ExtResource("1_hbvho")
 default_font_size = 18
-Button/colors/font_color = Color(0.93, 0.95, 0.97, 1)
 Label/colors/font_color = Color(0.93, 0.95, 0.97, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/colors/font_shadow_color = Color(0, 0, 0, 0)

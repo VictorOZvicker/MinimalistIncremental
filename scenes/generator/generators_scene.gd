@@ -3,7 +3,7 @@ extends Control
 
 
 func _ready() -> void:
-	GameEventsManager.player_prestiged.connect(on_player_prestige)
+	GameEventsManager.reseted_progression.connect(on_reseted_progression)
 	reload_generators()
 	reload_upgrades()
 
@@ -20,7 +20,7 @@ func reload_generators():
 		current_gen.set_generator(generator_name)
 		$GeneratorsScroll/GeneratorsGrid.add_child(current_gen)
 
-func on_player_prestige():
+func on_reseted_progression():
 	reload_generators()
 	reload_upgrades()
 

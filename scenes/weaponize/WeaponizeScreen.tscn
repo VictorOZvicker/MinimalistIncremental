@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cvv6y8gy30brp" path="res://scenes/weaponize/weaponize_screen.gd" id="1_kqk08"]
 [ext_resource type="PackedScene" uid="uid://brpt1famgcruv" path="res://nodes/items/itemSelectionNode.tscn" id="1_ql55y"]
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="1_vv4xy"]
+[ext_resource type="Texture2D" uid="uid://c277gc8rsnq4i" path="res://assets/UI/buttons/button_frame_128x64.png" id="4_rnvkt"]
+[ext_resource type="Texture2D" uid="uid://d2pyjlp6yn801" path="res://assets/UI/buttons/button_frame_selected_128x64.png" id="5_8ava0"]
 
 [node name="WeaponizeScreen" type="Control" unique_id=1114375821]
 custom_minimum_size = Vector2(770, 460)
@@ -13,6 +16,7 @@ offset_right = -190.0
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_vv4xy")
 script = ExtResource("1_kqk08")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1317943172]
@@ -25,9 +29,9 @@ color = Color(0.2734375, 0.2734375, 0.2734375, 1)
 [node name="itemSelection" type="HBoxContainer" parent="." unique_id=1348591598]
 custom_minimum_size = Vector2(770, 288)
 layout_mode = 0
-offset_top = 86.0
+offset_top = 74.0
 offset_right = 770.0
-offset_bottom = 374.0
+offset_bottom = 362.0
 theme_override_constants/separation = 16
 alignment = 1
 
@@ -42,3 +46,22 @@ layout_mode = 2
 
 [node name="ItemSelectionNode4" parent="itemSelection" unique_id=1849530130 instance=ExtResource("1_ql55y")]
 layout_mode = 2
+
+[node name="confirmButton" type="TextureButton" parent="." unique_id=667827548]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 384.0
+offset_right = 449.0
+offset_bottom = 448.0
+texture_normal = ExtResource("4_rnvkt")
+texture_pressed = ExtResource("5_8ava0")
+
+[node name="buttonLabel" type="Label" parent="confirmButton" unique_id=1064924449]
+layout_mode = 0
+offset_left = 26.5
+offset_top = 20.5
+offset_right = 101.5
+offset_bottom = 43.5
+text = "Confirm"
+
+[connection signal="pressed" from="confirmButton" to="." method="_on_confirm_button_pressed"]

@@ -122,7 +122,7 @@ static func get_prestige_gain(_total_money: BigNumber, _current_prestiges: BigNu
 		
 		prestige_bonus = upgrade.upgrade_effect.apply_upgrade(prestige_bonus, times_bought, Enums.UpgradeBonusTags.PRESTIGE)
 	
-	var amount_gain = _total_money.div(BigNumber.parseBigNumber("1e7").mul(_current_prestiges.add(1))).bigNumber_pow(0.5).mul(prestige_bonus).to_floor()
+	var amount_gain = _total_money.div(BigNumber.new(Game.prestige_min).mul(_current_prestiges.add(1))).bigNumber_pow(0.5).mul(prestige_bonus).to_floor()
 	
 	return amount_gain
 
