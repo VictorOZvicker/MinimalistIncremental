@@ -44,7 +44,7 @@ sinergias e escolhas de build aparecem.
 - **Menu de navegação (coluna lateral)**: troca o painel exibido (Geradores, Upgrades,
   Prestígio) mantendo o Score Board sempre visível. É um "trocador de painel"
   (`show()`/`hide()` em `scenes/Main.tscn`), não troca de cena.
-- **Botão de Prestígio**: escondido até o marco de desbloqueio (10.000.000 de dinheiro
+- **Botão de Prestígio**: escondido até o marco de desbloqueio (1.000.000.000 de dinheiro
   total acumulado).
 - **Tela de inventário**: overlay aberto pelo botão de inventário de cada gerador, some
   ao fechar; todo o estado vive no modelo, então reabrir restaura tudo.
@@ -93,12 +93,14 @@ sinergias e escolhas de build aparecem.
 
 - **Prestígio (camada 1)** — já funciona. Reseta geradores, dinheiro e upgrades comprados
   com dinheiro; mantém upgrades comprados com prestígio. Dá pontos de prestígio, que
-  viram um multiplicador global de produção via `prestige_power` (0.2 hoje).
+  viram um multiplicador global de produção via `prestige_power` (0.2 default).
   - Ganho: `floor(sqrt(total_money / (1e7 * (pontos_atuais + 1))) * bônus_de_prestígio)`.
-  - Só é permitido prestigiar quando o ganho supera os pontos atuais.
+  - Só é permitido prestigiar quando o ganho supera os pontos atuais. !!(ALTERAÇÃO)!!
 - **Weaponize (camada 2)** — reset mais profundo (zera inclusive prestígio e upgrades de
   prestígio) em troca de um **item**. Marco de desbloqueio: 1.000.000.000 de pontos de
   prestígio. Ver seção 6 — está incompleto.
+- Ganha tokens que serão a moeda desaa camada para comprar upgrades relacionados a itens.
+- Tokens será uma outra moeda e não dependerá de MONEY nem PRESTIGE.
 - Camadas acima disso ainda não foram definidas.
 
 ### 3.5 Itens e inventário
@@ -140,20 +142,13 @@ sinergias e escolhas de build aparecem.
   armazenamento do jogador e o conteúdo/posições de cada `GeneratorInventory`.
 - Nota de formato: os inventários usam **uid por instância**, então o save precisa
   persistir o `_next_uid` ou reindexar na carga.
+- Save demorará ainda para ser implementado. É necessário decidir ainda o que será salvo e nem tudo que será salvo foi implementado.
 
 ## 6. Em construção (existe parcialmente ou ainda não existe)
 
 ### 6.1 Finalizar o sistema de Weaponize
 
-Hoje existe apenas o esqueleto: `Player.weaponize()`, o sinal `weaponized` e a condição
-`SingleTimeEventsConditions.weaponize_reached()`. Falta:
-
-- Tela/painel de Weaponize e o botão que aparece ao atingir o marco.
-- Regra de **qual** item o jogador recebe (escolha, sorteio, pool que cresce com o
-  progresso da run — indefinido).
-- `Player.weaponize()` hoje não incrementa a quantidade do item corretamente; precisa
-  somar +1 ao stack em `Player.items`.
-- Moeda/contador próprio da camada, se houver, e o que ela multiplica.
+- Gerar os upgrades de tokens.
 
 ### 6.2 Integração dinâmica de upgrades para alvos fora dos geradores
 
@@ -514,12 +509,14 @@ Itens:
 }
 
 ```
-## 9. Decisões em aberto
+## 9. Em aberto
 
-- Quantidade final de geradores e se as linhas Light/Dark e Ore entram como planejado.
-- Paleta de cores minimalista definitiva (o esboço usa cores só como estrutura).
-- Se o clique manual volta e onde.
-- Quantas camadas de prestígio existirão acima do Weaponize e seus nomes/temas.
-- Como o Weaponize escolhe o item concedido.
-- Formato exato do save/load.
-- Se o tamanho da grade de inventário cresce por progresso (hoje é fixo em 3x3).
+- **Weaponize**: sorteio de item; ganho de tokens; Upgrades de itens.
+
+- **Upgrades**: Otimizar script de aplicação de Upgrades; Moldar Upgrades de Upgrades/Itens; Upgrades de alvos únicos.
+
+- **Balanceamento**: O jogo ainda parece muito fácil, talvez seja necessário aumentar as condições de layers.
+
+- **Arte**: Ainda é necessário modificar e decidir a paleta de cores de fundo das telas.
+
+- **Conteúdo**: É necessário revisitar a lista de Upgrades e criar novos itens únicos.
