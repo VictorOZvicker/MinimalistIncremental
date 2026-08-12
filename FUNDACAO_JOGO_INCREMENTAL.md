@@ -477,7 +477,7 @@ POW Types: Legendary -> Upgrades of type POW can't be openly created, it must be
 - Seguintes templates para a criação de data preenchidos com valores padrões.
 - Qualquer valor pode ser omitido. Ficando com o valor padrão na hora da contrução.
 
-```
+```JSON
 Geradores:
 "": {
   "name": "",
@@ -488,7 +488,7 @@ Geradores:
   "icon_path": "",          
   "color": [0,0,0],
   "tags": ["PRIMARY"]
-	}
+}
 
 Uprades:
 "": {
@@ -502,7 +502,7 @@ Uprades:
   "icon_path": "",
   "tags": ["ALL"],                      
   "currency": ""                
-},
+}
 
 Itens:
 "": {
@@ -511,7 +511,7 @@ Itens:
   "upgrade_name": "",
   "icon_path": "",
   "space": [1,1]
-},
+}
 
 ```
 ## 9. Decisões em aberto

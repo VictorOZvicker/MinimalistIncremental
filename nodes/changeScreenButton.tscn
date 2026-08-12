@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c8adttybfou21"]
+
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="1_60ubx"]
+[ext_resource type="Texture2D" uid="uid://dgncqbtu4cjst" path="res://assets/UI/engine_32x32.png" id="2_4m5qe"]
+[ext_resource type="Script" uid="uid://cav3y7gvohhx8" path="res://nodes/change_screen_button.gd" id="2_x66w7"]
+
+[node name="ChangeScreenButton" type="Control" unique_id=190347720]
+custom_minimum_size = Vector2(192, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -768.0
+offset_bottom = -460.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+theme = ExtResource("1_60ubx")
+script = ExtResource("2_x66w7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1319530839]
+custom_minimum_size = Vector2(192, 80)
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 80.0
+mouse_behavior_recursive = 1
+color = Color(0.53515625, 0.53515625, 0.53515625, 0.24313726)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1859811769]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 72.0
+mouse_behavior_recursive = 1
+theme_override_constants/separation = 2
+
+[node name="buttonIcon" type="TextureRect" parent="HBoxContainer" unique_id=1517349798]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_behavior_recursive = 1
+texture = ExtResource("2_4m5qe")
+
+[node name="buttonLabel" type="Label" parent="HBoxContainer" unique_id=1925046376]
+custom_minimum_size = Vector2(126, 64)
+layout_mode = 2
+mouse_behavior_recursive = 1
+theme_override_font_sizes/font_size = 18
+text = "Generators"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="button" type="TextureButton" parent="." unique_id=736661174]
+custom_minimum_size = Vector2(192, 80)
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 80.0
+mouse_behavior_recursive = 2
+
+[connection signal="pressed" from="button" to="." method="_on_button_pressed"]

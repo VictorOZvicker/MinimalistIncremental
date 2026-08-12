@@ -9,6 +9,8 @@ func _ready() -> void:
 	GameEventsManager.prestige_unlocked.connect(on_prestige_unlocked, CONNECT_ONE_SHOT)
 	GameEventsManager.open_upgrade_tooltip.connect(on_upgrade_tooltip_opened)
 	
+	GameEventsManager.prepare_weaponize.emit()
+	
 func _process(_delta: float) -> void:
 	pass
 
@@ -19,16 +21,6 @@ func change_screen(_screen_name: String):
 			child.show()
 		else:
 			child.hide()
-
-func _on_generators_button_pressed() -> void:
-	change_screen("GeneratorsScreen")
-
-func _on_prestige_button_pressed() -> void:
-	change_screen("PrestigesScreen")
-
-func _on_weaponize_button_pressed() -> void:
-	change_screen("WeaponizeScreen")
-	GameEventsManager.prepare_weaponize.emit()
 
 func on_money_changed(_amount: BigNumber):
 	$screenSeparator/scoreBoardSeparator/ScoreBoard/scoreInformation/moneyLabel.text = "$: %s" % _amount

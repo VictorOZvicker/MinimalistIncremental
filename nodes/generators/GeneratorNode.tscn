@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://coty1nf00k3go"]
 
 [ext_resource type="Script" uid="uid://b6myqcjlrwsbl" path="res://nodes/generators/generator_node.gd" id="1_okw1s"]
-[ext_resource type="Texture2D" uid="uid://6ciekh15g3pj" path="res://assets/UI/button_frame_128x128.png" id="3_eghbe"]
+[ext_resource type="Texture2D" uid="uid://6ciekh15g3pj" path="res://assets/UI/buttons/button_frame_128x128.png" id="3_eghbe"]
 [ext_resource type="PackedScene" uid="uid://c138bwkgahih1" path="res://nodes/generators/progressBar.tscn" id="3_pegst"]
 [ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="3_theme"]
-[ext_resource type="Texture2D" uid="uid://c1nuvkkgcag3m" path="res://assets/UI/base_32x32.png" id="4_utlpr"]
 [ext_resource type="FontFile" uid="uid://bi2hafc1eqx48" path="res://assets/fonts/PixelCode.ttf" id="6_2uex6"]
+[ext_resource type="Texture2D" uid="uid://cbaj8sex2jsow" path="res://assets/UI/backpack_64x64.png" id="6_u0vnf"]
+[ext_resource type="Texture2D" uid="uid://d3tasc715s8tn" path="res://assets/UI/semitransparent_black_64x64.png" id="6_vq3oi"]
 [ext_resource type="PackedScene" uid="uid://bd0c0tcrirdra" path="res://nodes/events/eventWarningNew.tscn" id="8_cd438"]
 
 [sub_resource type="Theme" id="Theme_2uex6"]
@@ -133,7 +134,16 @@ offset_left = 400.0
 offset_top = 48.0
 offset_right = 432.0
 offset_bottom = 80.0
-texture_normal = ExtResource("4_utlpr")
+texture_hover = ExtResource("6_vq3oi")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="openInvetoryButton" unique_id=172587363]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("6_u0vnf")
+expand_mode = 1
 
 [node name="unlockBg" type="ColorRect" parent="." unique_id=900773388]
 layout_mode = 0

@@ -164,7 +164,9 @@ func initialize_generator_inventory(_generator_name: String):
 	self.generators_inventory[_generator_name] = GeneratorInventory.new()
 
 func weaponize(_item: String):
-	if self.prestige_points.less_than(Game.weaponize_min): return
+	if self.prestige_points.less_than(Game.weaponize_min): 
+		print("Not enought Prestiges to weaponize")
+		return
 	self.items[_item] = self.items.get_or_add(_item, "") + 1
 	self.reset_progression(true, true)
 
