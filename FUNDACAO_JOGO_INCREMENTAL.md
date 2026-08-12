@@ -75,6 +75,8 @@ sinergias e escolhas de build aparecem.
 
 - Não existe hoje. Toda a produção é passiva via timers. Ponto em aberto: se o clique
   voltar, precisa de um lugar que não brigue com a leitura minimalista da tela.
+- Talvez nunca exista, pois o jogador precisa passar a maior parte do tempo pressionado
+  os botões de compras de geradores.
 
 ### 3.3 Upgrades
 
@@ -95,7 +97,7 @@ sinergias e escolhas de build aparecem.
   - Ganho: `floor(sqrt(total_money / (1e7 * (pontos_atuais + 1))) * bônus_de_prestígio)`.
   - Só é permitido prestigiar quando o ganho supera os pontos atuais.
 - **Weaponize (camada 2)** — reset mais profundo (zera inclusive prestígio e upgrades de
-  prestígio) em troca de um **item**. Marco de desbloqueio: 10.000.000 de pontos de
+  prestígio) em troca de um **item**. Marco de desbloqueio: 1.000.000.000 de pontos de
   prestígio. Ver seção 6 — está incompleto.
 - Camadas acima disso ainda não foram definidas.
 
@@ -111,6 +113,10 @@ sinergias e escolhas de build aparecem.
   daquele gerador**. Duas cópias do mesmo item = upgrade de nível 2 ali.
 - Itens podem ter efeitos genéricos (reaproveitam os tipos ADD/MUL/POW/PRICE) ou únicos
   (Callable em `UniqueEffects`).
+## MUDANÇAS
+
+- Muito provavelmente a parte de espaço dentro do inventário será mudado para conter padrões mais complexos
+  Ex: Formatos do tipo L ou outros formatos criativos.
 
 ## 4. Números grandes
 
@@ -120,9 +126,9 @@ sinergias e escolhas de build aparecem.
 - Ex:
 ```
 	1e3  -> 1.000 (Mil)
-	1e6  -> 1.000.000 (Milhão)
-	1e9  -> 1.000.000.000 (Bilhão)
-	1e12 -> 1 T (Trilhão)
+	1e6  -> 1.000.000 (Mi)
+	1e9  -> 1.000.000.000 (Bi)
+	1e12 -> 1 T (Tri)
 	...
 ```
 - Caso a opção de notação científica esteja ativa, ela sempre prevalece.
@@ -174,7 +180,7 @@ upgrades relevantes de um alvo sem hardcode.
 ### 7.1 Visão geral de pastas
 
 ```
-Game.gd                    Autoload: dono do Player e do registro de efeitos únicos
+Game.gd                    Autoload: dono do Player e registro de Configurações
 classes/
   BigNumber.gd             Aritmética de números grandes (mantissa + expoente)
   Generator.gd             Definição imutável de um gerador
@@ -373,8 +379,7 @@ dicionário de upgrades consumido pelo cálculo de produção. Não sabe nada de
 **`Game`** (`Game.gd`, autoload) — dono da instância única de `Player` e do registro de
 efeitos únicos. Ponto de acesso global: `Game.get_player()`.
 
-**`GameEvents` / `GameEventsManager`** (`classes/gameEvents/`) — `GameEvents` é o
-barramento: um objeto só de sinais. `GameEventsManager` (autoload) escuta os sinais do
+** `GameEventsManager`** (`classes/gameEvents/`) — `GameEventsManager` (autoload) escuta os sinais do
 `Player` e os retransmite pelo barramento, às vezes enriquecidos (comprar um upgrade
 dispara `update_gen_info("ALL")`, forçando todos os cards a recalcular). Assim a UI se
 conecta a um único lugar estável em vez de ao `Player`, e cenas podem entrar e sair sem
