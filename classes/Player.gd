@@ -10,6 +10,7 @@ var items:    Dictionary[String, int]
 var upgrades: Dictionary[String, int]
 
 var prestige_points: BigNumber
+var total_prestige_points: BigNumber
 var prestige_power: float
 
 var luck: int
@@ -36,14 +37,15 @@ signal upgrade_bought(_upgrade_name: String)
 signal reseted_progression()
 
 func _init():
-	self.money                = BigNumber.new(5)
-	self.prestige_points      = BigNumber.new(100)
-	self.total_money          = self.money.add(0)
-	self.generators           = {}
-	self.generators_inventory = {}
-	self.upgrades             = {}
-	self.prestige_power       = Game.prestige_power
-	self.luck                 = 100
+	self.money                 = BigNumber.new(5)
+	self.prestige_points       = BigNumber.new(100)
+	self.total_money           = self.money.add(0)
+	self.total_prestige_points = self.prestige_points.add(0)
+	self.generators            = {}
+	self.generators_inventory  = {}
+	self.upgrades              = {}
+	self.prestige_power        = Game.prestige_power
+	self.luck                  = 400
 	
 	self.gen_bought.connect(initialize_generator_inventory)
 	
@@ -154,7 +156,8 @@ func prestige():
 	if self.total_money.less_than(Game.prestige_min):
 		return
 	
-	self.prestige_points = prestige_points.add(prestige_amount)
+	self.prestige_points       = prestige_points.add(prestige_amount)
+	self.total_prestige_points = total_prestige_points.add(prestige_amount)
 	self.reset_progression()
 	self.prestige_points_changed.emit(self.prestige_points)
 	self.prestiged.emit()

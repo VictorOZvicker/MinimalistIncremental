@@ -17,7 +17,7 @@ signal update_gen_info(_generator_name: String)
 signal player_prestiged()
 
 signal prepare_weaponize()
-signal create_item_selection_screen(_determined_items: Array[GeneratorItem])
+signal create_item_selection_screen(_determined_items: Array)
 
 signal reseted_progression()
 
@@ -63,7 +63,7 @@ func on_prestige_reached():
 	self.prestige_unlocked.emit()
 
 func on_prepare_weaponize():
-	var determined_items := ProductionCalculator.get_weaponize_items_selection()
+	var determined_items := ProductionCalculator.get_weaponize_items_selection(Game.get_player().get_luck())
 	self.create_item_selection_screen.emit(determined_items)
 
 func weaponize(_item: String): 

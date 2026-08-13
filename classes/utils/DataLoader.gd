@@ -87,8 +87,8 @@ static func contruct_item(_data: Dictionary) -> GeneratorItem:
 	var item_space := Vector2i(item_space_array[0], item_space_array[1])
 	
 	return GeneratorItem.new(item_name, item_description, item_upgrade_name, item_rariry, item_icon_path, item_space)
-	
-static func _build_cache(_path: String, _constructor: Callable, _cost_getter: Callable) -> Dictionary:
+
+static func _build_cache(_path: String, _constructor: Callable, _sort_method: Callable, _getter: Callable) -> Dictionary:
 	var data = load_json(_path)
 	var cache := {}
 
@@ -98,14 +98,14 @@ static func _build_cache(_path: String, _constructor: Callable, _cost_getter: Ca
 	for element_name in data:
 		cache[element_name] = _constructor.call(data[element_name])
 	
-	if _cost_getter.is_valid():
-		return _sort_cache_by_cost(cache, _cost_getter)
+	if _sort_method.is_valid():
+		return _sort_cache(cache, _sort_method, _getter)
 	else: 
 		return cache
 
-static func _sort_cache_by_cost(_cache: Dictionary, _cost_getter: Callable) -> Dictionary:
+static func _sort_cache(_cache: Dictionary, _sort_method: Callable, _getter: Callable) -> Dictionary:
 	var keys := _cache.keys()
-	keys.sort_custom(func(a, b): return _cost_getter.call(_cache[a]).less_than(_cost_getter.call(_cache[b])))
+	keys.sort_custom(func(a, b): return _sort_method.call(_cache, a, b, _getter))
 
 	var sorted_cache := {}
 	for key in keys:
@@ -118,6 +118,15 @@ static func _generator_cost(_generator: Generator) -> BigNumber:
 
 static func _upgrade_cost(_upgrade: Upgrade) -> BigNumber:
 	return _upgrade.cost
+
+static func _item_rarity(_item: GeneratorItem) ->int:
+	return _item.rarity
+
+static func _sort_ascending(_cache, a, b, _getter: Callable):
+	return _getter.call(_cache[a]).less_than(_getter.call(_cache[b]))
+
+static func _sort_descending(_cache, a, b, _getter: Callable):
+	return _getter.call(_cache[a]) > _getter.call(_cache[b])
 
 static func get_generator(_name: String) -> Generator:
 	get_all_generators()
@@ -148,23 +157,19 @@ static func get_item(_name: String) -> GeneratorItem:
 
 static func get_all_generators() -> Dictionary:
 	if _generators_cache.is_empty():
-		_generators_cache = _build_cache(gens_path, Callable(DataLoader, "contruct_gen"), Callable(DataLoader, "_generator_cost"))
+		_generators_cache = _build_cache(gens_path, Callable(DataLoader, "contruct_gen"), Callable(DataLoader, "_sort_ascending"), Callable(DataLoader, "_generator_cost"))
 
 	return _generators_cache
 
 static func get_all_upgrades() -> Dictionary:
 	if _upgrades_cache.is_empty():
-		_upgrades_cache = _build_cache(upgrades_path, Callable(DataLoader, "construct_upgrade"), Callable(DataLoader, "_upgrade_cost"))
-
+		_upgrades_cache = _build_cache(upgrades_path, Callable(DataLoader, "construct_upgrade"), Callable(DataLoader, "_sort_ascending"), Callable(DataLoader, "_upgrade_cost"))
 	return _upgrades_cache
 
 static func get_all_items() -> Dictionary:
 	if _item_cache.is_empty():
-		_item_cache = _build_cache(item_path, Callable(DataLoader, "contruct_item"), Callable())
-		for item_id in _item_cache:
-			if _item_cache[item_id] != null:
-				_item_cache[item_id].item_id = item_id
-
+		_item_cache = _build_cache(item_path, Callable(DataLoader, "contruct_item"), Callable(DataLoader, "_sort_descending"), Callable(DataLoader, "_item_rarity"))
+	print(_item_cache)
 	return _item_cache
 
 static func get_array_bonus_values(_input: Variant) -> Array[BigNumber]:

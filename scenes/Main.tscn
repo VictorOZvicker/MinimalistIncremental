@@ -90,7 +90,7 @@ button_icon = ExtResource("7_q8u5g")
 button_label = "Generators"
 screen_name = "GeneratorsScreen"
 
-[node name="ChangeScreenButton2" parent="screenSeparator/menuBar/VBoxContainer" unique_id=398255350 instance=ExtResource("6_nxtc6")]
+[node name="prestigeButton" parent="screenSeparator/menuBar/VBoxContainer" unique_id=398255350 instance=ExtResource("6_nxtc6")]
 layout_mode = 2
 button_icon = ExtResource("7_jlsqs")
 button_label = "Prestige"
@@ -109,5 +109,5 @@ execution = "on_prestige_reached"
 metadata/_custom_type_script = "uid://bee3ko2qq3enh"
 
 [connection signal="change_screen" from="screenSeparator/menuBar/VBoxContainer/ChangeScreenButton" to="." method="change_screen"]
-[connection signal="change_screen" from="screenSeparator/menuBar/VBoxContainer/ChangeScreenButton2" to="." method="change_screen"]
+[connection signal="change_screen" from="screenSeparator/menuBar/VBoxContainer/prestigeButton" to="." method="change_screen"]
 [connection signal="change_screen" from="screenSeparator/menuBar/VBoxContainer/ChangeScreenButton3" to="." method="change_screen"]

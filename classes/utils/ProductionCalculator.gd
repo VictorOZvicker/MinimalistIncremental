@@ -126,9 +126,20 @@ static func get_prestige_gain(_total_money: BigNumber, _current_prestiges: BigNu
 	
 	return amount_gain
 
-static func get_weaponize_items_selection() -> Array[GeneratorItem]:
-	var items_for_selection: Array[GeneratorItem] = []
-	items_for_selection.append(DataLoader.get_item("Battery_Item"))
-	items_for_selection.append(DataLoader.get_item("Hourglass_Item"))
-	items_for_selection.append(DataLoader.get_item("Shovel_Item"))
+static func get_weaponize_items_selection(_player_luck: int) -> Array:
+	var items_for_selection: Array = []
+	var selected_items_amount := 0
+	
+	var items_cache = DataLoader.get_all_items()
+	
+	while selected_items_amount < 3:
+		for item in items_cache:
+			var r = randi_range(1, _player_luck)
+			if items_cache.get(item).rarity < r and not items_for_selection.has(item) and selected_items_amount < 3:
+				items_for_selection.append(item)
+				selected_items_amount += 1
+	
+	#items_for_selection.append(DataLoader.get_item("Battery_Item"))
+	#items_for_selection.append(DataLoader.get_item("Hourglass_Item"))
+	#items_for_selection.append(DataLoader.get_item("Shovel_Item"))
 	return items_for_selection

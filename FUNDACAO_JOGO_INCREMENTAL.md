@@ -17,7 +17,7 @@ O tema visual é **cor**: cada gerador é uma cor, e as tags de cor (`PRIMARY`, 
 `WARM`, `COOL`, `NEUTRAL`, `LIGHT`, `DARK`, `ORE`) são o que amarra geradores e upgrades.
 Um upgrade não afeta "o gerador 3", ele afeta "todos os geradores quentes" — é por aí que
 sinergias e escolhas de build aparecem.
-
+***
 ## 2. Layout de UI
 
 ![Esboço](Esboco.png)
@@ -56,7 +56,7 @@ sinergias e escolhas de build aparecem.
   (vermelho/laranja/cinza/verde) são placeholders de estrutura, não a paleta final.
 - **Tamanho**: detalhamento com base em 128 px. Células de inventário são 64 px.
 - **Viewport**: 960x540, `canvas_items` stretch.
-
+***
 ## 3. Mecânicas principais
 
 ### 3.1 Geradores
@@ -70,14 +70,14 @@ sinergias e escolhas de build aparecem.
   a 60% do seu custo, e só começa a produzir depois da primeira compra.
 - **Bônus de nível**: a cada 25 unidades possuídas o gerador ganha +1x multiplicativo
   (`amount / 25 + 1`). É o que dá sentido a upgrades de redução de preço.
-
+***
 ### 3.2 Clique manual
 
 - Não existe hoje. Toda a produção é passiva via timers. Ponto em aberto: se o clique
   voltar, precisa de um lugar que não brigue com a leitura minimalista da tela.
 - Talvez nunca exista, pois o jogador precisa passar a maior parte do tempo pressionado
   os botões de compras de geradores.
-
+***
 ### 3.3 Upgrades
 
 - Upgrades são **data-driven** (`data/upgrades.json`) e se aplicam por tag, não por
@@ -88,7 +88,7 @@ sinergias e escolhas de build aparecem.
 - Moedas de compra: `MONEY`, `PRESTIGE`, `ITEM`.
 - Cada upgrade tem `buy_limit` e `cost_increase` próprios — upgrades recompráveis e
   upgrades de compra única usam a mesma estrutura.
-
+***
 ### 3.4 Camadas de prestígio
 
 - **Prestígio (camada 1)** — já funciona. Reseta geradores, dinheiro e upgrades comprados
@@ -102,7 +102,7 @@ sinergias e escolhas de build aparecem.
 - Ganha tokens que serão a moeda desaa camada para comprar upgrades relacionados a itens.
 - Tokens será uma outra moeda e não dependerá de MONEY nem PRESTIGE.
 - Camadas acima disso ainda não foram definidas.
-
+***
 ### 3.5 Itens e inventário
 
 - Cada gerador tem sua própria grade de inventário (`GeneratorInventory`, 3x3 por padrão).
@@ -119,7 +119,7 @@ sinergias e escolhas de build aparecem.
 
 - Muito provavelmente a parte de espaço dentro do inventário será mudado para conter padrões mais complexos
   Ex: Formatos do tipo L ou outros formatos criativos.
-
+***
 ## 4. Números grandes
 
 - Classe `BigNumber` própria (mantissa + expoente). Mostra o sufixo até o Centilhão, mas
@@ -134,7 +134,7 @@ sinergias e escolhas de build aparecem.
 	...
 ```
 - Caso a opção de notação científica esteja ativa, ela sempre prevalece.
-
+***
 ## 5. Save/Load
 
 - Ainda não implementado. Precisa cobrir no mínimo: dinheiro atual e total acumulado,
@@ -143,14 +143,10 @@ sinergias e escolhas de build aparecem.
 - Nota de formato: os inventários usam **uid por instância**, então o save precisa
   persistir o `_next_uid` ou reindexar na carga.
 - Save demorará ainda para ser implementado. É necessário decidir ainda o que será salvo e nem tudo que será salvo foi implementado.
-
+***
 ## 6. Em construção (existe parcialmente ou ainda não existe)
 
-### 6.1 Finalizar o sistema de Weaponize
-
-- Gerar os upgrades de tokens.
-
-### 6.2 Integração dinâmica de upgrades para alvos fora dos geradores
+### 6.1 Integração dinâmica de upgrades para alvos fora dos geradores
 
 Hoje `UpgradeEffect` só é consultado dentro do cálculo de gerador (produção e preço) e no
 cálculo de ganho de prestígio, cada um com um laço próprio dentro de
@@ -169,7 +165,7 @@ Alvos previstos:
 Ponto de design: isso pede um "escopo de aplicação" no upgrade (o que ele modifica) além
 das tags de cor (quem ele modifica), para que `ProductionCalculator` possa varrer os
 upgrades relevantes de um alvo sem hardcode.
-
+***
 ## 7. Estrutura do código
 
 ### 7.1 Visão geral de pastas
@@ -192,20 +188,20 @@ scenes/                    Telas (Main, Geradores, Upgrades, Prestígio, Invent�
 Regra que organiza tudo isso: **`classes/` não conhece a UI**. Nada em `classes/` estende
 `Node` ou toca em `$caminho` (com exceção do autoload `GameEventsManager`). A UI lê o
 estado e escuta sinais; nunca calcula nada por conta própria.
-
+***
 ### 7.2 Fluxo de dados
 
 ```
 data/*.json
-    │  (carregado e cacheado uma vez)
-    ▼
+	│  (carregado e cacheado uma vez)
+	▼
 DataLoader ──► Generator / Upgrade / GeneratorItem   (definições, imutáveis)
-                        │
-                        ▼
+						│
+						▼
 Player (estado: quanto de cada coisa) ──► ProductionCalculator (funções puras)
-    │                                              │
-    │  emite sinais                                └──► BigNumber de custo/produção
-    ▼
+	│                                              │
+	│  emite sinais                                └──► BigNumber de custo/produção
+	▼
 GameEventsManager ──► GameEvents (barramento) ──► nodes/ e scenes/ (UI)
 ```
 
@@ -213,7 +209,7 @@ O caminho de uma compra: o botão chama `Player.buy_generator()` → o Player pe
 custo ao `ProductionCalculator` → desconta e atualiza o dicionário → emite `gen_bought`
 → `GameEventsManager` traduz para `update_gen_info` → cada `GeneratorNode` interessado
 recalcula seus labels. A UI nunca altera o estado diretamente.
-
+***
 ### 7.3 Classes principais
 
 #### `Generator` — `classes/Generator.gd`
@@ -322,7 +318,7 @@ var upgrade_effect: UpgradeEffect       # O que faz
 O par `Upgrade` (o "quanto custa / a quem se aplica") + `UpgradeEffect` (o "o que faz")
 é o que permite descrever upgrades inteiramente em JSON. Escrever GDScript só é
 necessário quando o efeito não cabe nos tipos padrão.
-
+***
 ### 7.4 Demais classes
 
 **`UpgradeEffect`** (`classes/upgrades/UpgradeEffect.gd`) — o efeito de um upgrade, como
@@ -386,7 +382,7 @@ desbloqueio que disparam uma vez. Um `SingleTimeEvent` é um nó com duas string
 condições ficam em `SingleTimeEventsConditions` como funções estáticas
 (`prestige_reached`, `weaponize_reached`). Marco novo = uma função estática + um nó na
 cena, sem tocar em código existente.
-
+***
 ### 7.5 Camada de UI
 
 **`nodes/`** são peças reutilizáveis: `GeneratorNode` (card de gerador — labels, botão de
@@ -404,7 +400,7 @@ sozinho.
 (construção do visual do item, com fallback para painel colorido quando não há ícone).
 `inventory_scene.gd` é o orquestrador: recebe os sinais de drop e traduz para chamadas no
 `GeneratorInventory` e em `Player.items`.
-
+***
 ## 8. Regras de criação de conteúdo
 
 ### 8.1 Geradores (sujeito a mudanças)
@@ -438,6 +434,8 @@ Last Special: Rainbow Generator -> Has all tags and a bonus increment of 20x
 
 Implementados hoje: Red, Yellow, Blue, Orange, Green, Purple, Gray, Black, White.
 
+***
+
 ### 8.2 Upgrades (sujeito a mudanças)
 
 ```
@@ -456,6 +454,8 @@ MUL Types: Uncommon/Rare -> This type could appear more frequent deppending on i
 POW Types: Legendary -> Upgrades of type POW can't be openly created, it must be thought to serve as a stepping stone to achieve late parts of the game. It must be considered if this upgrade should be exclusive to PRESTIGE cost Upgrades. There are some reasons to keep some in the MONEY cost category, but it should not be a huge amount.
 ```
 
+***
+
 ### 8.3 Adicionando conteúdo na prática
 
 - **Gerador novo**: uma entrada em `data/generators.json`. Nada de código — o
@@ -466,6 +466,8 @@ POW Types: Legendary -> Upgrades of type POW can't be openly created, it must be
   `bonus_type: "UNIQUE"` e `upgrade_effect` apontando para o nome da função.
 - **Item novo**: a entrada em `data/items.json` apontando para um upgrade existente (ou
   novo) via `upgrade_name`; o `space` define o footprint na grade.
+
+***
 
 ### 8.4 Templates de criação de data
 
@@ -509,14 +511,15 @@ Itens:
 }
 
 ```
+
 ## 9. Em aberto
 
-- **Weaponize**: sorteio de item; ganho de tokens; Upgrades de itens.
-
-- **Upgrades**: Otimizar script de aplicação de Upgrades; Moldar Upgrades de Upgrades/Itens; Upgrades de alvos únicos.
-
-- **Balanceamento**: O jogo ainda parece muito fácil, talvez seja necessário aumentar as condições de layers.
-
-- **Arte**: Ainda é necessário modificar e decidir a paleta de cores de fundo das telas.
-
-- **Conteúdo**: É necessário revisitar a lista de Upgrades e criar novos itens únicos.
+>- ***Weaponize***: **<s>sorteio de item</s>; ganho de tokens; Upgrades de itens.**
+>
+>- ***Upgrades***: **Otimizar script de aplicação de Upgrades; Moldar Upgrades de Upgrades/Itens; Upgrades de alvos únicos.**
+>
+>- ***Balanceamento***: **O jogo ainda parece muito fácil, talvez seja necessário aumentar as condições de layers.**
+>
+>- ***Arte***: **Ainda é necessário modificar e decidir a paleta de cores de fundo das telas.**
+>
+>- ***Conteúdo***: **É necessário revisitar a lista de Upgrades e criar novos itens únicos.**

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://swuh25xl35sx"]
 
+[ext_resource type="Theme" uid="uid://lpjebe4vy8to" path="res://assets/Theme.tres" id="1_dq4rp"]
 [ext_resource type="Script" uid="uid://bx1dxy1g7o5ef" path="res://scenes/prestige/prestiges_screen.gd" id="1_woo08"]
 
 [sub_resource type="Theme" id="Theme_6o53b"]
@@ -14,6 +15,7 @@ offset_right = -190.0
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_dq4rp")
 script = ExtResource("1_woo08")
 
 [node name="base" type="ColorRect" parent="." unique_id=1474539306]
