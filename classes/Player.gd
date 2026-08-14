@@ -64,7 +64,7 @@ func buy_generator(_generator_name: String) -> bool:
 	if buy_amount <= 0:
 		return false
 
-	var cost := ProductionCalculator.get_generator_cost(_generator_name, amount_owned, self.upgrades, buy_amount)
+	var cost := GameCalculator.get_generator_cost(_generator_name, amount_owned, self.upgrades, buy_amount)
 
 	if(self.money.less_than(cost)):
 		return false
@@ -86,7 +86,7 @@ func buy_upgrade(_upgrade_name: String, _currency: Enums.UpgradeCostTags) -> boo
 		return false
 
 	var buy_amount := mini(self.upgrade_buy_amount, upgrade.buy_limit - times_bought)
-	var cost := ProductionCalculator.get_upgrade_cost(_upgrade_name, times_bought, buy_amount)
+	var cost := GameCalculator.get_upgrade_cost(_upgrade_name, times_bought, buy_amount)
 
 
 	match _currency:
@@ -98,6 +98,8 @@ func buy_upgrade(_upgrade_name: String, _currency: Enums.UpgradeCostTags) -> boo
 			if self.prestige_points.less_than(cost): return false
 			self.prestige_points = self.prestige_points.sub(cost)
 			self.prestige_points_changed.emit(self.prestige_points)
+		_:
+			return false
 	
 	self.upgrades[_upgrade_name] = times_bought + buy_amount
 	
@@ -115,10 +117,10 @@ func get_upgrade_amount(_upgrade_name: String) -> int: return self.upgrades.get(
 
 func get_generator_buy_amount(_generator_name: String) -> int:
 	if self.max_gen_buy:
-		return ProductionCalculator.get_max_affordable_generator_amount(_generator_name, get_generator_amount(_generator_name), self.upgrades, self.money)
+		return GameCalculator.get_max_affordable_generator_amount(_generator_name, get_generator_amount(_generator_name), self.upgrades, self.money)
 	return self.gen_buy_amount
 
-func get_generator_cost(_generator_name: String) -> BigNumber: return ProductionCalculator.get_generator_cost(_generator_name, get_generator_amount(_generator_name), self.upgrades, get_generator_buy_amount(_generator_name))
+func get_generator_cost(_generator_name: String) -> BigNumber: return GameCalculator.get_generator_cost(_generator_name, get_generator_amount(_generator_name), self.upgrades, get_generator_buy_amount(_generator_name))
 
 func get_upgrade_cost(_upgrade_name: String) -> BigNumber:
 	var upgrade := DataLoader.get_upgrade(_upgrade_name)
@@ -128,7 +130,7 @@ func get_upgrade_cost(_upgrade_name: String) -> BigNumber:
 	var times_bought := get_upgrade_amount(_upgrade_name)
 	var buy_amount := mini(self.upgrade_buy_amount, maxi(upgrade.buy_limit - times_bought, 1))
 
-	return ProductionCalculator.get_upgrade_cost(_upgrade_name, times_bought, buy_amount)
+	return GameCalculator.get_upgrade_cost(_upgrade_name, times_bought, buy_amount)
 
 func get_generator_production(_generator_name: String) -> BigNumber:
 	var generator_inventory: GeneratorInventory = get_generator_inventory(_generator_name)
@@ -137,14 +139,17 @@ func get_generator_production(_generator_name: String) -> BigNumber:
 	var total_generator_upgrades: Dictionary[String, int] = {}
 	total_generator_upgrades.merge(generator_item_upgrades)
 	total_generator_upgrades.merge(self.upgrades)
-	return ProductionCalculator.get_generator_production(_generator_name, get_generator_amount(_generator_name), total_generator_upgrades)
+	return GameCalculator.get_generator_production(_generator_name, get_generator_amount(_generator_name), total_generator_upgrades, self.get_prestige_bonus())
 
 func get_generator_inventory(_generator_name: String) -> GeneratorInventory: return self.generators_inventory.get(_generator_name)
 
-func get_prestige_gain() -> BigNumber: return ProductionCalculator.get_prestige_gain(self.total_money, self.prestige_points, self.upgrades)
+func get_prestige_gain() -> BigNumber: return GameCalculator.get_prestige_gain(self.total_money, self.prestige_points, self.upgrades)
 
 @warning_ignore("integer_division")
 func get_luck() -> int: return self.luck/100
+
+func get_prestige_bonus() -> BigNumber:
+	return self.prestige_points.mul(self.prestige_power).not_zero()
 
 func warm_data_cache():
 	DataLoader.get_all_generators()

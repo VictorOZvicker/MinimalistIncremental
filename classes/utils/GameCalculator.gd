@@ -1,4 +1,4 @@
-class_name ProductionCalculator
+class_name GameCalculator
 
 
 static func get_generator_cost(_generator_name: String, _amount_owned: BigNumber, _upgrades: Dictionary, _buy_amount: int = 1) -> BigNumber:
@@ -79,38 +79,21 @@ static func get_upgrade_cost(_upgrade_name: String, _times_bought: int, _buy_amo
 
 	return unit_cost.mul(series_sum)
 
-static func get_generator_production(_generator_name: String, _amount_owned: BigNumber, _upgrades: Dictionary) -> BigNumber:
+static func get_generator_production(_generator_name: String, _amount_owned: BigNumber, _upgrades: Dictionary, _prestige_bonus: BigNumber) -> BigNumber:
 	var definition := DataLoader.get_generator(_generator_name)
 	if definition == null or _amount_owned.less_or_equal(0):
 		return BigNumber.new(0)
 
 	var effective_production := definition.base_production
-	var add_bonus := BigNumber.new(0)
-	var mul_bonus := BigNumber.new(1)
-	var pow_exponents: Array[float] = []
 	
-	for upgrade_name in _upgrades:
-		var upgrade_amount: int = _upgrades[upgrade_name]
-		var upgrade := DataLoader.get_upgrade(upgrade_name)
-		if upgrade == null or upgrade_amount <= 0 or not definition.has_any_tag(upgrade.tags):
-			continue
-		
-		add_bonus = upgrade.upgrade_effect.apply_upgrade(add_bonus, upgrade_amount, Enums.UpgradeBonusTags.ADD, definition)
-		
-		mul_bonus = upgrade.upgrade_effect.apply_upgrade(mul_bonus, upgrade_amount, Enums.UpgradeBonusTags.MUL, definition)
-		
-		var new_pow_exponent = upgrade.upgrade_effect.apply_upgrade(BigNumber.new(1), upgrade_amount, Enums.UpgradeBonusTags.POW, definition)
-		if new_pow_exponent is float: pow_exponents.append(new_pow_exponent)
+	var lvl_bonus = _amount_owned.div(25).add(1)
+	var bonuses_from_upgrades = UpgradeManager.apply_upgrades(_upgrades, definition)
 	
-	var lvl_bonus = _amount_owned.div(25).add(1).to_int()
-	var prestige_points = Game.get_player().prestige_points
-	var prestige_bonus = prestige_points.mul(Game.get_player().prestige_power).add(1) if prestige_points.greater_than(0) else BigNumber.new(1)
+	effective_production = effective_production.add(bonuses_from_upgrades[0]).mul(bonuses_from_upgrades[1]).mul(_amount_owned).mul(lvl_bonus).mul(_prestige_bonus)
 	
-	effective_production = effective_production.add(add_bonus).mul(mul_bonus).mul(_amount_owned).mul(lvl_bonus).mul(prestige_bonus)
-	
-	for exponent_value in pow_exponents:
+	for exponent_value in bonuses_from_upgrades[2]:
 		effective_production = effective_production.bigNumber_pow(exponent_value)
-		
+	
 	return effective_production
 
 static func get_prestige_gain(_total_money: BigNumber, _current_prestiges: BigNumber, _upgrades: Dictionary) -> BigNumber:

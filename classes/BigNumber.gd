@@ -198,3 +198,6 @@ func to_floor():
 	if self.exponent > 15:
 		return self
 	return BigNumber.new(floor(self.to_float()))
+
+func not_zero():
+	return BigNumber.new(1) if self.mantissa < 0 else self
