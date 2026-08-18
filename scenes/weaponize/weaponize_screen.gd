@@ -17,7 +17,7 @@ func on_create_selection(_determined_items: Array):
 	for id in _determined_items:
 		var item = DataLoader.get_item(id)
 		var new_item = item_scene.instantiate()
-		new_item.setup(item.item_id, item.item_name, item.item_description, item.rarity, 0, item.icon_path)
+		new_item.setup(item.uid, item.item_name, item.item_description, item.rarity, 0, item.icon_path)
 		new_item.selected.connect(on_item_selected)
 		$itemSelection.add_child(new_item)
 

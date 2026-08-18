@@ -1,5 +1,7 @@
 class_name Upgrade
 
+var uid: String
+
 var upgrade_name: String
 var icon_path: String
 var description: String
@@ -15,7 +17,8 @@ var upgrade_effect: UpgradeEffect
 
 var tags: Array[Enums.GenTags]
 
-func _init(_name: String, _cost: BigNumber, _upgrade_effect: UpgradeEffect, _tags: Array[Enums.GenTags], _description: String, _icon_path: String, _buy_limit: int, _cost_increase: float, _currency: Enums.UpgradeCostTags):
+func _init(_uid: String, _name: String, _cost: BigNumber, _upgrade_effect: UpgradeEffect, _tags: Array[Enums.GenTags], _description: String, _icon_path: String, _buy_limit: int, _cost_increase: float, _currency: Enums.UpgradeCostTags):
+	self.uid            = _uid
 	self.upgrade_name   = _name
 	self.cost           = _cost
 	self.cost_increase  = _cost_increase

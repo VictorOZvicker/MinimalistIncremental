@@ -27,7 +27,7 @@ static func load_json(_path: String):
 
 	return data
 
-static func contruct_gen(_data: Dictionary) -> Generator:
+static func contruct_gen(_data: Dictionary, _uid: String) -> Generator:
 	if _data == null:
 		return null
 	
@@ -45,9 +45,9 @@ static func contruct_gen(_data: Dictionary) -> Generator:
 	var tags := Enums.gen_tags_from_names(_data.get("tags", []))
 	# ==================================================
 
-	return Generator.new(name, cost, cost_increase, base_production, wait_time_production, icon_path, color, tags)
+	return Generator.new(_uid, name, cost, cost_increase, base_production, wait_time_production, icon_path, color, tags)
 
-static func construct_upgrade(_data: Dictionary) -> Upgrade:
+static func construct_upgrade(_data: Dictionary, _uid: String) -> Upgrade:
 	if _data == null: return null
 
 	# =========== UPGRADE PARAMETERS ==================
@@ -73,20 +73,19 @@ static func construct_upgrade(_data: Dictionary) -> Upgrade:
 	
 	var upgrade_effect                 := UpgradeEffect.new(bonus_types, bonus_values, unique_effect)
 
-	return Upgrade.new(name, cost, upgrade_effect, tags, description, icon_path, buy_limit, cost_increase, currency)
+	return Upgrade.new(_uid, name, cost, upgrade_effect, tags, description, icon_path, buy_limit, cost_increase, currency)
 
-static func contruct_item(_data: Dictionary) -> GeneratorItem:
+static func contruct_item(_data: Dictionary, _uid: String) -> GeneratorItem:
 	if _data == null: return null
 	
 	var item_name: String             = _data.get("name", "")
 	var item_description: String      = _data.get("description", "") 
 	var item_upgrade_name: String     = _data.get("upgrade_name", "")
 	var item_icon_path: String        = _data.get("icon_path", "")
-	var item_space_array: Array       = _data.get("space", [1,1])
+	var item_space: Array       = _data.get("space", [1])
 	var item_rariry: Enums.ItemRarity = Enums.ItemRarity.get(_data.get("rarity", ""), 0)
-	var item_space := Vector2i(item_space_array[0], item_space_array[1])
 	
-	return GeneratorItem.new(item_name, item_description, item_upgrade_name, item_rariry, item_icon_path, item_space)
+	return GeneratorItem.new(_uid, item_name, item_description, item_upgrade_name, item_rariry, item_icon_path, item_space)
 
 static func _build_cache(_path: String, _constructor: Callable, _sort_method: Callable, _getter: Callable) -> Dictionary:
 	var data = load_json(_path)
@@ -96,7 +95,7 @@ static func _build_cache(_path: String, _constructor: Callable, _sort_method: Ca
 		return cache
 
 	for element_name in data:
-		cache[element_name] = _constructor.call(data[element_name])
+		cache[element_name] = _constructor.call(data[element_name], element_name)
 	
 	if _sort_method.is_valid():
 		return _sort_cache(cache, _sort_method, _getter)
@@ -169,7 +168,6 @@ static func get_all_upgrades() -> Dictionary:
 static func get_all_items() -> Dictionary:
 	if _item_cache.is_empty():
 		_item_cache = _build_cache(item_path, Callable(DataLoader, "contruct_item"), Callable(DataLoader, "_sort_descending"), Callable(DataLoader, "_item_rarity"))
-	print(_item_cache)
 	return _item_cache
 
 static func get_array_bonus_values(_input: Variant) -> Array[BigNumber]:

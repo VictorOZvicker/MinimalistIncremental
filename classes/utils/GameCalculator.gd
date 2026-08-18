@@ -1,6 +1,5 @@
 class_name GameCalculator
 
-
 static func get_generator_cost(_generator_name: String, _amount_owned: BigNumber, _upgrades: Dictionary, _buy_amount: int = 1) -> BigNumber:
 	var definition := DataLoader.get_generator(_generator_name)
 	if definition == null:

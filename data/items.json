@@ -5,7 +5,7 @@
 		"upgrade_name": "battery_item_upgrade",
 		"rarity": "COMMON",
 		"icon_path": "res://assets/items/battery_item_64x64.png",
-		"space": [1,1]
+		"space": [1]
 	},
 	"Hourglass_Item": {
 		"name": "The Hourglass",
@@ -13,7 +13,9 @@
 		"upgrade_name": "hourglass_item_upgrade",
 		"rarity": "UNCOMMON",
 		"icon_path": "res://assets/items/hourglass_item_64x128.png",
-		"space": [1,2]
+		"space": [
+			1,0,
+			1,0]
 	},
 	"Energy_Core_Item": {
 		"name": "Energy Core",
@@ -21,7 +23,9 @@
 		"upgrade_name": "energy_core_item_upgrade",
 		"rarity": "RARE",
 		"icon_path": "res://assets/items/energy_core_item_128x128.png",
-		"space": [2,2]
+		"space": [
+			1,1,
+			1,1]
 	},
 	"Shovel_Item": {
 		"name": "Shovel",
@@ -29,7 +33,62 @@
 		"upgrade_name": "shovel_item_upgrade",
 		"rarity": "EPIC",
 		"icon_path": "res://assets/items/shovel_item_128x64.png",
-		"space": [2,1]
+		"space": [
+			1,1,
+			0,0]
+	},
+	"X_Item": {
+		"name": "X",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"rarity": "EPIC",
+		"icon_path": "",
+		"space": [
+			1,0,1,
+			0,1,0,
+			1,0,1]
+	},
+	"L_Right_Item": {
+		"name": "L RIGHT",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"rarity": "EPIC",
+		"icon_path": "",
+		"space": [
+			1,0,0,
+			1,0,0,
+			1,1,0]
+	},
+	"L_Left_Item": {
+		"name": "L LEFT",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"rarity": "EPIC",
+		"icon_path": "",
+		"space": [
+			0,1,0,
+			0,1,0,
+			1,1,0]
+	},
+	"L_Right_Short_Item": {
+		"name": "L RIGHT SHORT",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"rarity": "EPIC",
+		"icon_path": "",
+		"space": [
+			1,0,
+			1,1]
+	},
+	"L_Left_Short_Item": {
+		"name": "L LEFT SHORT",
+		"description": "Increase production by 5 X time of production",
+		"upgrade_name": "shovel_item_upgrade",
+		"rarity": "EPIC",
+		"icon_path": "",
+		"space": [
+			0,1,
+			1,1]
 	}
 		
 }

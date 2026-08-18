@@ -21,7 +21,7 @@ func setup(_item: GeneratorItem, _count: int) -> void:
 		_icon_holder.add_child(InventoryItemVisual.create(item, _icon_holder.size, true))
 		_count_label.text = "x%d" % count
 		_count_label.visible = count > 1
-		tooltip_text = "%s (%dx%d)\n%s" % [item.item_name, item.space.x, item.space.y, item.item_description]
+		tooltip_text = "%s (%dx%d)\n%s" % [item.item_name, item.get_size().x, item.get_size().y, item.item_description]
 	else:
 		_count_label.visible = false
 		tooltip_text = ""

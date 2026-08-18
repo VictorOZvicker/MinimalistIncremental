@@ -40,18 +40,14 @@ func load_inventory():
 		_grid.place_item(uid, DataLoader.get_item(_model.get_item_name(uid)), _model.get_item_position(uid))
 
 func _on_player_item_dropped(_item: GeneratorItem, _cell: Vector2i) -> void:
-	var player: Player = Game.get_player()
-	var item_id := _item.item_id
-
+	var item_id := _item.uid
 	var uid := _model.insert_item(item_id, _cell)
 	if uid < 0: return
-
-	player.items[item_id] = player.items.get(item_id, 0) - 1
-	if player.items[item_id] <= 0:
-		player.items.erase(item_id)
-
+	
+	GameEventsManager.player_placed_item(_item.uid, _cell, self.generator_name)
+	
 	_grid.place_item(uid, _item, _cell)
-	_player_panel.refresh(player.items)
+	_player_panel.refresh(Game.get_player().items)
 
 func _on_item_moved(_uid: int, _cell: Vector2i) -> void:
 	if _model.move_item(_uid, _cell):

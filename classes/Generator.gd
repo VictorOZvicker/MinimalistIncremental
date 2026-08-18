@@ -1,5 +1,7 @@
 class_name Generator
 
+var uid: String
+
 var generator_name: String
 var icon_path: String
 
@@ -13,7 +15,8 @@ var tags: Array[Enums.GenTags]
 
 var gen_color: Color
 
-func _init(_name: String, _base_cost: BigNumber, _cost_increase: float, _base_production: BigNumber, _wait_time_production := 1.0, _icon_path := "", _gen_color := Color(0, 0, 0), _tags: Array[Enums.GenTags] = []):
+func _init(_uid: String, _name: String, _base_cost: BigNumber, _cost_increase: float, _base_production: BigNumber, _wait_time_production := 1.0, _icon_path := "", _gen_color := Color(0, 0, 0), _tags: Array[Enums.GenTags] = []):
+	self.uid                  = _uid
 	self.generator_name       = _name
 	self.base_cost            = _base_cost
 	self.cost_increase        = _cost_increase

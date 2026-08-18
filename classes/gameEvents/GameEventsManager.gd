@@ -23,6 +23,7 @@ signal reseted_progression()
 
 signal open_inventory(_generator_name: String)
 signal open_upgrade_tooltip(_target: Upgrade, _uid: String, _position: float)
+
 #endregion
 # ============ EVENTS SIGNALS ============
 
@@ -71,3 +72,12 @@ func weaponize(_item: String):
 
 func on_reset_progression() -> void:
 	self.reseted_progression.emit()
+
+func player_placed_item(_item_uid: String, _cell: Vector2i, _generator_name: String):
+	var player = Game.get_player()
+	
+	player.items[_item_uid] = player.items.get(_item_uid, 0) - 1
+	if player.items[_item_uid] <= 0:
+		player.items.erase(_item_uid)
+	
+	player.get_generator_inventory(_generator_name).insert_item(_item_uid, _cell)
